@@ -87,11 +87,11 @@ var LoginBlock = `
 `;
 
 var config = {
-    user: 'arunavadw',
-    database: 'arunavadw',
-    host: 'db.imad.hasura-app.io',
+    user: 'lqrjqvrbvvigaw',
+    database: 'd5hsecam0tgn0c',
+    host: process.env.DATABASE_URL,
     port: '5432',
-    password: process.env.DB_PASSWORD
+    password: '158426c9c75437748cafda1e736a8d52cab53396a582d06c180401bcd10d14c7'
 };
 
 var app = express();

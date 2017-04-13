@@ -1,0 +1,16 @@
+{
+  "name": "Ctrl-V",
+  "version": "1.0",
+  "description": "An App for pasting information online.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arunava Chakraborty",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.5.6",
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}

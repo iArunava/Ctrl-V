@@ -11,6 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/LearningDroidArunava/Ctrl-V.git"
   },
+  "engines": {
+  "node": "6.x.x",
+  "npm": "3.x.x"
+  },
   "keywords": [],
   "author": "Arunava Chakraborty",
   "license": "ISC",

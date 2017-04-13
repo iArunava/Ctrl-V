@@ -89,7 +89,7 @@ var LoginBlock = `
 var config = {
     user: 'lqrjqvrbvvigaw',
     database: 'd5hsecam0tgn0c',
-    host: process.env.DATABASE_URL,
+    host: 'ec2-54-243-185-132.compute-1.amazonaws.com',
     port: '5432',
     password: '158426c9c75437748cafda1e736a8d52cab53396a582d06c180401bcd10d14c7'
 };

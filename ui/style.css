@@ -1,0 +1,570 @@
+@import url('https://fonts.googleapis.com/css?family=Syncopate');
+
+.center_wrap {
+  width: 800px;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+.the_name {
+  text-align: center;
+  font-size: 50px;
+  color: #97a899;
+  font-weight: bold;
+  text-shadow: 1px 1px 12px #888;
+}
+
+.the_body {
+  background: #e1bee7;
+  font-family: 'Syncopate', 'Helvetica';
+  padding: 0;
+  margin: 0;
+}
+
+.paddZero {
+    padding: 0;
+}
+
+.aLilBold {
+  font-weight: bold;
+}
+
+.the_title {
+  margin-top: 20%;
+  margin-bottom: 10%;
+}
+
+.showAsFormatted{
+    word-wrap: break-word;
+    white-space: pre-line;
+}
+
+.the_box {
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  text-align: center;
+  margin: auto;
+  padding: 22px 95px;
+  width: 60%;
+  background-color: #fff;
+}
+
+.the_login_box {
+  border: 2px solid #f1f1f1;
+  box-shadow: 10px 8px 15px rgba(0,0,0,0.14),
+            -04px -17px -50px -10px rgba(0,0,0,0.19);
+  margin-top: 8%;
+}
+
+form{
+
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #872be7;
+}
+
+li {
+  text-decoration: none;
+}
+
+.navBarOptions {
+  float: left;
+  margin-left: 35px;
+  margin-right: 10px;
+}
+
+.goRight {
+    float: right;
+}
+
+.justMargin {
+  margin: 20px;
+}
+
+.atCenter {
+    height: 200px;
+    width: 400px;
+    margin-top: 50px;
+    position: relative;
+    top: 50%;
+    left: 35%;
+}
+
+.thePasteBox {
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  padding: 22px 95px;
+  width: 60%;
+  background-color: #fff;
+}
+
+.pasteLayoutPart {
+
+}
+
+.navBarOption_site_name {
+  font-weight: bolder;
+  font-size: 50px;
+  float: left;
+  margin-right: 60px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  width: 150px;
+  text-decoration: none;
+  transition: box-shadow 0.5s;
+}
+
+li a:hover {
+  box-shadow: 0px 8px 8px rgba(0,0,0,0.14);
+}
+
+li a::selection {
+  box-shadow: 0px 8px 8px rgba(0,0,0,0.14);
+}
+
+textarea {
+  resize: none;
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  line-height: 22px;
+  box-sizing: border-box;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+#main_paste {
+  position: relative;
+  left: -140px;
+}
+
+.the_footer_login_box {
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  text-align: center;
+  margin: auto;
+  padding: 22px 95px;
+  width: 40%;
+  background-color: #fff;
+}
+
+.justBoxIt {
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  text-align: center;
+  background-color: #fff;
+  padding: 5px;
+}
+
+#theBlankProPic {
+  border-radius: 60px;
+}
+
+.theFooter {
+  margin-top: 20px;
+}
+
+#theNavigationBar {
+  padding: 0;
+  margin: 0;
+}
+
+.toLeft{
+    float: left;
+    display: inline-block;
+}
+
+.profile_picture {
+  display: block;
+  border-radius: 60px;
+  box-shadow: 5px 5px 12px #888;
+  margin: auto;
+}
+
+.newPasteLink {
+  text-decoration: none;
+  color: white;
+}
+
+.identifier_1 {
+  padding: 50px;
+  float: left;
+}
+
+.footerOptions {
+  width: 100%;
+}
+
+#identifier_next {
+  position: relative;
+  top:   350px;
+  left: -500px;
+}
+
+.optionsNewPaste {
+  float: left;
+  display: inline;
+  width: 50%
+}
+
+#ctrlvHits {
+  position: relative;
+  top: -45px;
+  left: 220px;
+}
+
+#newPasteDiv {
+  padding: 20px;
+  margin: 20px;
+  display: inline-block;
+  width: 100%
+}
+
+.newPstInputs {
+  width: 100%;
+}
+
+#ctrlvhitsbox {
+  border: 1px solid;
+  border-color: #e5e6e9 #dfe0e4 #d0d1d5;
+  border-radius: 3px;
+  text-align: center;
+  margin: auto;
+  padding: 22px 95px;
+  width: 60%;
+  background-color: #fff;
+  position: relative;
+  left: 480px;
+}
+
+.getComfortable {
+  margin: 20px 50px;
+  padding: 10px 20px;
+  font-size: 20px;
+  letter-spacing: 1px;
+  line-height: 35px;
+  max-width: 2500px;
+}
+
+.getSomeSpace{
+  margin: 20px 50px;
+  padding: 10px 20px;
+}
+
+.modal_content {
+    background-color: #fefefe;
+    margin: 5px auto; /* 15% from the top and centered */
+    border: 1px solid #888;
+    width: 60%; /* Could be more or less, depending on screen size */
+}
+
+.modal_form{
+  display: none;
+  position: fixed;
+  z-index: 1;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+  left: 0;
+  top: 0;
+  padding-top: 30px;
+  width: 100%;
+  height: 100%;
+}
+
+hr {
+  color: #dbdcdd;
+  opacity: 0.5;
+}
+
+button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  font-family: inherit;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  width: 100%;
+  -webkit-transition: box-shadow 0.75s, background-color 0.75s;
+  transition: box-shadow 0.75s, background-color 0.75s;
+}
+
+button:hover{
+  background-color: #69c66d;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#addCopyImage > button {
+  background-color: #4CAF20;
+  -webkit-transition: box-shadow 0.75s, background-color 0.75s;
+  transition: box-shadow 0.75s, background-color 0.75s;
+  width: 80px;
+  height: 80px;
+  margin: 8px 16px;
+  padding: 8px 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 50%;
+}
+
+.makeItBold {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+input[type=text], input[type=password], input[type=email]{
+  padding: 10px 10px;
+  display: inline-block;
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+
+label{
+  padding-left: 35px;
+  padding-right: 10px;
+}
+
+.label_passwd_padding{
+  padding-left: 35px;
+  padding-right: 115px;
+}
+
+.label_uname_padding{
+  padding-left: 60px;
+}
+
+
+.the_ctrl_v_icon {
+  display: block;
+  border-radius: 60px;
+  box-shadow: 5px 5px 12px #888;
+  padding: 20px;
+  margin: auto;
+}
+
+.create_account_box{
+  padding: 16px;
+  margin: auto;
+}
+
+.topMargin1 {
+  margin-top: 20px;
+}
+
+.marginsForDpLink {
+  margin-top: 30px;
+  margin-left: 245px;
+  margin-bottom: 10px;
+}
+
+.proLinkInput {
+  width: 50%;
+}
+
+.theCloseButton {
+  position: relative;
+  left: 635px;
+  top: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+  transition: color 0.5s;
+}
+
+.theCloseButton:hover, .theCloseButton:focus{
+  color: red;
+}
+.animate{
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s;
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+@-webkit-keyframes animatezoom{
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+.thisIsInline {
+  display: inline;
+}
+
+#theExtraOrdinaryText {
+  font-family: "Courier New", Courier, monospace;
+  color: black;
+  width: 40%;
+}
+
+.loader {
+  display: none;
+  border: 6px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 6px solid #3498db;
+  width: 20px;
+  height: 20px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.dontDecorate {
+  text-decoration: none;
+  color: black;
+}
+
+.goAsh {
+  color: #bdbdbd;
+}
+
+.paddTop {
+  margin-top: 30px;
+}
+
+.aShortPasteLayout {
+  margin: 20px;
+}
+
+.aShortPasteLayout:hover {
+  background-color: #f3e5f5;
+  cursor: pointer;
+}
+
+.giveMeRed{
+  margin-top: 15px;
+  color: #f44336;
+}
+
+.theErrorFooter {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+  margin-top: 50px;
+}
+
+.requiredClass1 {
+  width: 30%;
+}
+
+.fixPadd {
+  padding: 0px 25px;
+  width: 50px;
+}
+
+.small_profile_picture {
+  display: block;
+  border-radius: 60px;
+}
+
+#theNavigationBar {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    right: 0;
+    width: 100%;
+    -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+     opacity: 0.93;
+}
+
+.topPadd {
+  padding-top: 100px;
+}
+
+.container {
+    overflow: hidden;
+    background-color: #333;
+    font-family: Arial;
+}
+
+.container a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+}
+
+.dropdown .dropbtn {
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+}
+
+.container a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}

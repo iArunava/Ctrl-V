@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!-- Page Colors
+        #9143c8 -> Purple
+        #06a209 -> Green
+      -->
+  <title>Ctrl+V</title>
+  <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
+
+  <meta charset="utf-8">
+  <meta name="description" content="A place where one could paste documents and
+  access it from any where in the web">
+  <meta name="keywords" content="ctrl, v, paste, clipboard, online">
+  <meta name="author" content="Arunava Chakraborty">
+  <meta name="viewport" content="width=device-width initial-scale=0.5">
+
+  <link rel="stylesheet" href="/ui/style.css">
+</head>
+
+
+<body class="the_body">
+  <div class="center_wrap paddZero">
+    <div class="the_title" >
+      <img src="/ui/ctrlVIcon.png" alt="ctrlVICon"
+      width="130" height="130" class="the_ctrl_v_icon" />
+      <br/><br/><br/>
+      <h1 class="the_name title_page_name">Ctrl+V</h1>
+    </div>
+    <div class="the_box">
+      <div>
+
+        <button class="ripple" type="button"
+        onclick="document.getElementById('create_account_form')
+        .style.display='block'">Create New Account</button>
+
+        <br/>
+        <hr/>
+        <a class="newPasteLink" href="/NewPaste"><button class="ripple" id="create_paste_submit" type="button">Create New Paste</button></a>
+        <br/>
+        <hr/>
+        <button class="ripple" type="button"
+        onclick="document.getElementById('login_form')
+        .style.display='block'">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Create Account form -->
+  <div id="create_account_form" class="modal_form">
+    <div class="the_login_box the_box animate">
+
+        <span onclick="document.getElementById('create_account_form')
+        .style.display='none'" class="theCloseButton"
+        title="Close">&times;</span>
+
+
+        <div class="create_account_box">
+          <label><b>First Name<sup>*</sup></b></label>
+          <input class="requiredClass1" type="text" id="fname_create" placeholder="First Name" name="fname"
+           required autofocus>
+
+          <label><b>Last Name</b></label>
+          <input class="requiredClass1" type="text" id="lname_create" placeholder="Last Name" name="lname">
+          <br/><br/><br/><br/>
+
+          <label><b>Email<sup>*</sup></b></label>
+          <input class="requiredClass1" type="email" id="email_create" placeholder="Email" name="elec-mail" required>
+
+          <label class="label_uname_padding"><b>Username<sup>*</sup></b></label>
+          <input class="requiredClass1" type="text" id="uname" placeholder="Username" name="u_name" required>
+          <br/><br/><br/><br/>
+
+          <label class="label_passwd_padding"><b>Password<sup>*</sup></b></label>
+          <input class="requiredClass1" type="password" id="pwd_create" placeholder="Password" name="passwd" required>
+          <br/><br/><br/><br/>
+
+          <label><b>Confirm Password<sup>*</sup></b></label>
+          <input class="requiredClass1" type="password" placeholder="Re-Type Password" name="c_passwd" required>
+           <br/><br/><br/><br/>
+
+          <hr/>
+          <div class="loader"></div>
+          <button class="ripple" id="create_account_form_submit" type="submit">Create New Account</button>
+        </div>
+
+    </div>
+  </div>
+  
+
+  <!-- The Login form -->
+  <div id="login_form" class="modal_form">
+    <div class="animate the_box the_login_box">
+      <span onclick="document.getElementById('login_form')
+      .style.display='none'" class="theCloseButton"
+      title="Close">&times;</span>
+
+        <div class="create_account_box">
+
+          <label><b>Username</b></label>
+          <input class="requiredClass1" type="text" placeholder="Username" name="uname" id="the_uname_login" required>
+          <br/><br/>
+
+          <label><b>Password</b></label>
+          <input class="requiredClass1" type="password" placeholder="Password" name="p_asswd" id="the_passwd_login" required>
+          <br/><br/>
+
+          <hr/>
+          <div class="loader"></div>
+          <button class="ripple" id="login_btn" type="submit">Login</button>
+        </div>
+        
+    </div>
+  </div>
+  
+  <script src="/ui/main.js"></script>
+</body>
+
+
+</html>

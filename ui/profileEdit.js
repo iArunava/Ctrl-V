@@ -39,7 +39,7 @@ editSaveBtn.onclick = function() {
       dpLink = null;
   }
   
-  request.open('POST', 'http://arunavadw.imad.hasura-app.io/edit-profile-save', true);
+  request.open('POST', '/edit-profile-save', true);
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify({DpLink: dpLink,
                                Bio:    bio}));

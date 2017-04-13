@@ -20,7 +20,7 @@ create_paste_btn.onclick = function() {
       if(request.status === 200){
           console.log(request.response);
           create_paste_btn.innerHTML = "Create New Paste";
-          window.location = "http://arunavadw.imad.hasura-app.io/pastes/"+request.response;
+          window.location = "/pastes/"+request.response;
       } else {
         alert("Some Internal Error Occured!\nPlease Try Again Later!");
         create_paste_btn.innerHTML = "Create New Paste";
@@ -49,7 +49,7 @@ create_paste_btn.onclick = function() {
   
   var pasteTime = new Date();
 
-  request.open('POST', 'http://arunavadw.imad.hasura-app.io/create-paste', true);
+  request.open('POST', '/create-paste', true);
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify({PasteBody: pasteBody,
                               PasteTitle: pasteTitle,

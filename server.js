@@ -6,8 +6,8 @@ var crypto = require('crypto');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-
 // Global Variables
+var loggedInSign = ``;
 var LoggedIn = false;
 var LoginBlock = `
 <div id="loginBlock">
@@ -86,6 +86,29 @@ var LoginBlock = `
   </div>
 `;
 
+var NavigationBar = `
+<div id="theNavigationBar" class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar-content">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Ctrl+V</a>
+    </div>
+    <div class="collapse navbar-collapse" id="mynavbar-content">
+      <ul class="nav navbar-nav">
+      <li><a href="/">Main</a></li>
+      <li><a href="/NewPaste">New Paste</a></li>
+      <li><a href="/browse">Browse</a></li>
+      ${loggedInSign}
+      </ul>
+    </div>
+  </div>
+</div>
+`;
+
 var config = {
     user: 'lqrjqvrbvvigaw',
     database: 'd5hsecam0tgn0c',
@@ -126,22 +149,22 @@ function checkLogin(req, res){
 }
 
 app.get('/ctrlVUsers-db', function (req, res) {
-  
+
   pool.query('SELECT * FROM ctrlvusers', function(err, result){
       if (err) {res.status(500).send(err.toString());}
       else {res.send(result);}
   });
-  
+
 });
 
 app.get('/', function (req, res) {
-    
+
     if (checkLogin(req, res)) {
        res.redirect('/users/'+req.session.auth.userName);
    } else {
        res.sendFile(path.join(__dirname, 'ui', 'index.html'));
    }
-  
+
 });
 
 app.get('/users/:username', function(req, res){
@@ -150,7 +173,7 @@ app.get('/users/:username', function(req, res){
            if (err && result.rows.length === 0) {
               res.status(500).send(err.toString());
            } else {
-               
+
               pool.query('SELECT * FROM "pastes" WHERE paste_username = $1 ORDER BY id DESC', [req.session.auth.userName], function(err, result2) {
                 if (err && result2.rows.length === 0){
                     ctrlvHits = 0;
@@ -175,6 +198,18 @@ app.get('/ui/:fileName', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', req.params.fileName));
 });
 
+app.get('/ui/:dirname/:fileName', function (req, res) {
+
+  if (req.params.dirname !== "js" &&
+      req.params.dirname !== "css" &&
+      req.params.dirname !== "fonts") {
+
+    res.status(404).send(errorTemplate("Page Not Found!"));
+  } else {
+  res.sendFile(path.join(__dirname, 'ui', req.params.dirname, req.params.fileName));
+  }
+});
+
 app.get('/EditProfile', function(req, res){
       if(checkLogin(req, res)){
           pool.query('SELECT * FROM "ctrlvusers" WHERE username = $1', [req.session.auth.userName], function(err, result){
@@ -195,7 +230,7 @@ app.get('/EditProfile', function(req, res){
 
 app.get('/pastes/:pasteLink', function (req, res) {
   pool.query('SELECT * FROM "pastes" WHERE paste_link = $1', [req.params.pasteLink], function(err, result){
-      
+
       if (err) {
           res.status(500).send(err.toString());
         } else {
@@ -205,12 +240,12 @@ app.get('/pastes/:pasteLink', function (req, res) {
                   res.end(createPasteTemplate(result.rows[0], checkLogin(req, res), returnUserDpLink(req, res)));
               }
               }
-        
+
   });
 });
 
 app.get('/NewPaste', function(req, res) {
-   res.send(thePastePage(checkLogin(req, res), returnUserDpLink(req, res))); 
+   res.send(thePastePage(checkLogin(req, res), returnUserDpLink(req, res)));
 });
 
 app.get('/browse', function(req, res){
@@ -236,12 +271,12 @@ app.get('bower_components/css-ripple-effect/dist/ripple.min.css', function(req, 
 });
 
 app.post('/login', function(req, res){
-    
+
     var username = req.body.username;
     var password = req.body.password;
-    
+
     pool.query('SELECT * FROM "ctrlvusers" WHERE "username" = $1', [username], function(err, result) {
-        
+
         if (err) {
           res.status(500).send(err.toString());
         } else {
@@ -253,15 +288,15 @@ app.post('/login', function(req, res){
                   var salt = dbString.split('$')[2];
                   var hashedPassword = hash(password, salt); // Creating a hash based on the password submitted and the original salt
                   if (hashedPassword === dbString) {
-                    
+
                     // Set the session
                     req.session.auth = {userId: result.rows[0].id, userName: result.rows[0].username, userProPicLink: result.rows[0].dp_link};
                     // set cookie with a session id
                     // internally, on the server side, it maps the session id to an object
                     // { auth: {userId }}
-                    
+
                     res.send('Logging In');
-                    
+
                   } else {
                       res.end(errorTemplate("Username/Password Invalid!", checkLogin(req, res), returnUserDpLink(req, res)));
                   }
@@ -293,7 +328,7 @@ app.get('/check-login', function (req, res) {
 });
 
 app.post('/create-paste', function(req, res){
-    
+
     var pasteBody = req.body.PasteBody;
     var pasteTitle = req.body.PasteTitle;
     var pasteAuthor = req.body.PasteAuthor;
@@ -305,10 +340,10 @@ app.post('/create-paste', function(req, res){
     if(LoggedIn && !PasteAnon) {
         pasteUsername = req.session.auth.userName;
     }
-    
-    pool.query('INSERT INTO "pastes" (paste_author, paste_title, paste_time, paste_link, paste_body, paste_username, paste_user_dp_link) VALUES ($1, $2, $3, $4, $5, $6, $7)', 
+
+    pool.query('INSERT INTO "pastes" (paste_author, paste_title, paste_time, paste_link, paste_body, paste_username, paste_user_dp_link) VALUES ($1, $2, $3, $4, $5, $6, $7)',
     [pasteAuthor, pasteTitle, pasteTime, pasteLink, pasteBody, pasteUsername, pasteAuthorLink], function(err, result) {
-        
+
         if(err){
             res.status(500).send(errorTemplate(err.toString(), checkLogin(req, res), returnUserDpLink(req, res)));
         } else {
@@ -325,12 +360,12 @@ app.post('/create_account', function(req, res){
   var lastName = req.body.lastname;
   var email = req.body.email;
   var unEncryptedPassword = req.body.password;
-  
+
   var salt = crypto.randomBytes(128).toString('hex');
   var password = hash(unEncryptedPassword, salt);
 
-  pool.query('INSERT INTO "ctrlvusers" (username, email, firstname, lastname, password) VALUES ($1, $2, $3, $4, $5)', 
-            [username, email, firstName, lastName, password], 
+  pool.query('INSERT INTO "ctrlvusers" (username, email, firstname, lastname, password) VALUES ($1, $2, $3, $4, $5)',
+            [username, email, firstName, lastName, password],
             function(err, result) {
 
                     if (err){
@@ -345,7 +380,7 @@ app.post('/create_account', function(req, res){
 app.post('/edit-profile-save', function(req, res) {
     var dpLink = req.body.DpLink;
     var bio = req.body.Bio;
-    
+
     pool.query('UPDATE "ctrlvusers" SET "bio" = $1, "dp_link" = $2 WHERE (("username" = $3))', [bio, dpLink, req.session.auth.userName], function(err, result) {
        if(err){
            res.status(500).send(errorTemplate("Something Went Wrong!\nPlease try Again!", checkLogin(req, res), returnUserDpLink(req, res)));
@@ -361,18 +396,18 @@ app.use(function(request, response){
 });
 
 function errorTemplate(errorMessage, loggedIn, dpLink){
-    
+
     var loginBlock = LoginBlock;
     var loggedInSign = "";
-    var mainJsScript = `<script src="/ui/main.js"></script`;
-    
+    var mainJsScript = `<script src="/ui/main.js"></script>`;
+
     if(loggedIn){
         loginBlock = ``;
         loggedInSign = smallProPic(dpLink);
         mainJsScript = "";
-        
+
     }
-    
+
     var errorTemplate = `
     <!DOCTYPE html>
     <html lang="en-US">
@@ -389,72 +424,66 @@ function errorTemplate(errorMessage, loggedIn, dpLink){
       <meta name="author" content="Arunava Chakraborty">
       <meta name="viewport" content="width=device-width initial-scale=1.0">
 
+      <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
       <link rel="stylesheet" href="/ui/style.css">
     </head>
 
     <body class="the_body">
 
-    <div id="theNavigationBar">
-        <ul>
-          <li><a class="navBarOption_site_name" href=''>Ctrl+V</a></li>
-          <br/>
-          <li class="navBarOptions"><a href="/">Main</a></li>
-          <li class="navBarOptions"><a href="/NewPaste">New Paste</a></li>
-          <li class="navBarOptions"><a href="/browse">Browse</a></li>
-          ${loggedInSign}
-        </ul>
-      </div>
+    ${NavigationBar}
 
-      <div class="center_wrap">
+    <div class="center_wrap">
 
       <div class="atCenter">
       <h3>${errorMessage}</h3>
       </div>
-    
+
     <div class="topMargin1">${loginBlock}</div>
-    
+
     </div>
-    
+
     <div class="theErrorFooter">
     <ul>
       <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
     </ul>
     </div>
     ${mainJsScript}
+    <script type="text/javascript" src="/ui/js/jquery.js"></script>
+    <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
     </body>
     </html>
 `;
-    
+
     return errorTemplate;
 }
 
 function createBrowsePage(pastesData, loggedIn, dpLink){
     var theTotalLayout = "";
-    
+
     var author;
     var title;
     var time;
     var username;
     var link;
     var loggedInSign = "";
-    
+
     if(loggedIn) {
         loggedInSign = smallProPic(dpLink);
     }
-    
+
     for(i=0; i<pastesData.rows.length; i++){
         author = pastesData.rows[i].paste_author;
         title  = pastesData.rows[i].paste_title;
         time   = pastesData.rows[i].paste_time;
         username = pastesData.rows[i].paste_username;
-        link   = "http://arunavadw.imad.hasura-app.io/pastes/"+pastesData.rows[i].paste_link;
-        
+        link   = "/pastes/"+pastesData.rows[i].paste_link;
+
         if(username === null || username === ''){
             username = `#`;
         }
-        
-        usernameLink = "http://arunavadw.imad.hasura-app.io/users/"+username;
-        
+
+        usernameLink = "/users/"+username;
+
         theTotalLayout += `
         <a class="dontDecorate" href="`+link+`">
           <div class="aShortPasteLayout the_box">
@@ -475,11 +504,11 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
           </a>
     `;
     }
-    
+
     var browsePage = `
     <!DOCTYPE html>
     <html lang="en-US">
-    
+
     <head>
       <!-- Page Colors
             #9143c8 -> Purple
@@ -487,50 +516,45 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
           -->
       <title>Ctrl+V</title>
       <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
-    
+
       <meta charset="utf-8">
       <meta name="description" content="A place where one could paste documents and
       access it from any where in the web">
       <meta name="keywords" content="ctrl, v, paste, clipboard, online">
       <meta name="author" content="Arunava Chakraborty">
       <meta name="viewport" content="width=device-width initial-scale=2.0">
-    
-      <link rel="stylesheet" href="/ui/style.css">
+
       <link rel="stylesheet" href="/ui/pastes/bower_components/css-ripple-effect/dist/ripple.min.css">
+
+      <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
+      <link rel="stylesheet" href="/ui/style.css">
     </head>
-    
-    
+
+
     <body class="the_body">
-    
-      <div id="theNavigationBar">
-          <ul>
-            <li><a class="navBarOption_site_name" href=''>Ctrl+V</a></li>
-            <br/>
-            <li class="navBarOptions"><a  class="ripple" href="/">Main</a></li>
-            <li class="navBarOptions"><a class="ripple" href="/NewPaste">New Paste</a></li>
-            <li class="navBarOptions"><a class="ripple" href="/browse">Browse</a></li>
-            ${loggedInSign}
-          </ul>
-        </div>
-    
+
+      ${NavigationBar}
+
       <div class="center_wrap">
         <div class="the_box paddTop">
           <h2>Recent Pastes:</h2>
           <hr/>
-          
+
           <div>
           ${theTotalLayout}
           </div>
-          
+
           </div>
           </div>
-          
+
           <div class="theFooter">
             <ul>
               <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
             </ul>
           </div>
-        
+
+          <script type="text/javascript" src="/ui/js/jquery.js"></script>
+          <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
         </body>
         </html>
     `;
@@ -545,11 +569,11 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
     var title = pasteData.paste_title;
     var completeLink = "http://arunavadw.imad.hasura-app.io/pastes/"+link;
     var loggedInSign = "";
-    
+
     if(loggedIn){
         loggedInSign = smallProPic(dpLink);
     }
-    
+
     var pasteTemplate = `
     <!DOCTYPE html>
     <html lang="en-US">
@@ -564,26 +588,18 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
       access it from any where in the web">
       <meta name="keywords" content="ctrl, v, paste, clipboard, online">
       <meta name="author" content="Arunava Chakraborty">
-      <meta name="viewport" content="width=device-width initial-scale=2.0">
+      <meta name="viewport" content="width=device-width initial-scale=1.0">
 
-      <link rel="stylesheet" href="/ui/style.css">
-      
       <script src='https://wzrd.in/standalone/copy-button@latest'></script>
       <link rel="stylesheet" href="bower_components/css-ripple-effect/dist/ripple.min.css">
+
+      <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
+      <link rel="stylesheet" href="/ui/style.css">
     </head>
 
     <body class="the_body">
 
-    <div id="theNavigationBar">
-        <ul>
-          <li><a class="navBarOption_site_name" href=''>Ctrl+V</a></li>
-          <br/>
-          <li class="navBarOptions"><a href="/">Main</a></li>
-          <li class="navBarOptions"><a href="/NewPaste">New Paste</a></li>
-          <li class="navBarOptions"><a href="/browse">Browse</a></li>
-          ${loggedInSign}
-        </ul>
-      </div>
+    ${NavigationBar}
 
       <div class="topPadd">
 
@@ -601,7 +617,7 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
       <span class="makeItBold">Paste Live At:</span> <input id="theExtraOrdinaryText" type="text" value=${completeLink}>
       <copy-button id="addCopyImage" target-element="#theExtraOrdinaryText"><img src="/ui/Copy-50.png" title="Copy" width="40" height="40"></copy-button>
       </div>
-      
+
       <hr/>
 
       </div>
@@ -609,11 +625,13 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
       <p class="showAsFormatted"><textarea cols="165" rows="20">${body}</textarea></p>
       </div>
       </div>
+      <script type="text/javascript" src="/ui/js/jquery.js"></script>
+      <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
     </body>
     </html>
 
     `;
-    
+
     return pasteTemplate;
 }
 
@@ -623,28 +641,28 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
     var userBio = userData.bio;
     var proPic = userData.dp_link;
     var limit = ctrlvHits;
-    
+
     if(ctrlvHits > 5){
         limit = 5;
     } else {
         limit = ctrlvHits;
     }
-    
+
     var ctrlvRecents = "";
-            
+
     for(i=0; i<limit; i++){
         var author   = pastesData.rows[i].paste_author;
         var title    = pastesData.rows[i].paste_title;
         var time     = pastesData.rows[i].paste_time;
         var username = pastesData.rows[i].paste_username;
         var link     = "http://arunavadw.imad.hasura-app.io/pastes/"+pastesData.rows[i].paste_link;
-        
+
         if(username === null || username === ''){
             username = `#`;
         }
-        
+
         usernameLink = "http://arunavadw.imad.hasura-app.io/users/"+username;
-        
+
         ctrlvRecents += `
         <a class="dontDecorate" href="`+link+`">
           <div class="aShortPasteLayout the_box">
@@ -666,15 +684,15 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
         `;
         }
 
-    
+
     if(proPic === null){
         proPic = '/ui/blank-profile-picture.png';
     }
-    
+
     if(userBio === null){
         userBio = "This user has no Bio";
     }
-    
+
     var profileTemplate = `
         <!DOCTYPE html>
         <html lang="en-US">
@@ -686,24 +704,36 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
           access it from any where in the web">
           <meta name="keywords" content="ctrl, v, paste, clipboard, online">
           <meta name="author" content="Arunava Chakraborty">
-          <meta name="viewport" content="width=device-width initial-scale=2.0">
+          <meta name="viewport" content="width=device-width initial-scale=1.0">
+
+          <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
           <link rel="stylesheet" href="/ui/style.css">
         </head>
-        
+
         <body class="the_body">
 
-          <div id="theNavigationBar">
-            <ul>
-              <li><a class="navBarOption_site_name" href=''>Ctrl+V</a></li>
-              <br/>
-              <li class="navBarOptions"><a href="/">Main</a></li>
-              <li class="navBarOptions"><a href="/NewPaste">New Paste</a></li>
-              <li class="navBarOptions"><a href="/EditProfile">Edit Profile</a></li>
-              <li class="navBarOptions"><a href="/browse">Browse</a></li>
-              <li class="goRight"><a href="/logout">Log Out</a></li>
-            </ul>
+        <div id="theNavigationBar" class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar-content">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Ctrl+V</a>
+            </div>
+            <div class="collapse navbar-collapse" id="mynavbar-content">
+              <ul class="nav navbar-nav">
+              <li><a href="/">Main</a></li>
+              <li><a href="/NewPaste">New Paste</a></li>
+              <li><a href="#">Edit Profile</a></li>
+              <li><a href="/browse">Browse</a></li>
+              <li><a href="/logout">Log Out</a></li>
+              </ul>
+            </div>
           </div>
-        
+        </div>
+
           <div class="center_wrap">
             <div id="identifier_main">
               <div class="identifier_1">
@@ -733,31 +763,33 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
               </div>
             </div>
           </div>
-          
+
           <script src="/ui/main.js"></script>
+          <script type="text/javascript" src="/ui/js/jquery.js"></script>
+          <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
         </body>
-        
+
         </html>`;
-        
+
         return profileTemplate;
     }
 
 function thePastePage(loggedIn, dpLink) {
-    
+
     var loginBlock = LoginBlock;
     var loadMainScriptHtml = `<script src="/ui/main.js"></script>`;
     var loggedInSign = "";
-    
+
     if(loggedIn) {
         loginBlock = ``;
         loadMainScriptHtml = ``;
         loggedInSign = smallProPic(dpLink);
     }
-    
+
     var pasteHtml = `
     <!DOCTYPE html>
     <html lang="en-US">
-    
+
     <head>
       <!-- Page Colors
             #9143c8 -> Purple
@@ -765,30 +797,22 @@ function thePastePage(loggedIn, dpLink) {
           -->
       <title>Ctrl+V</title>
       <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
-    
+
       <meta charset="utf-8">
       <meta name="description" content="A place where one could paste documents and
       access it from any where in the web">
       <meta name="keywords" content="ctrl, v, paste, clipboard, online">
       <meta name="author" content="Arunava Chakraborty">
       <meta name="viewport" content="width=device-width initial-scale=1.0">
-    
+
+      <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
       <link rel="stylesheet" href="/ui/style.css">
     </head>
-    
+
     <body class="the_body">
-    
-      <div id="theNavigationBar">
-        <ul>
-          <li><a class="navBarOption_site_name" href=''>Ctrl+V</a></li>
-          <br/>
-          <li class="navBarOptions"><a href="/">Main</a></li>
-          <li class="navBarOptions"><a href="#">New Paste</a></li>
-          <li class="navBarOptions"><a href="/browse">Browse</a></li>
-          ${loggedInSign}
-        </ul>
-      </div>
-    
+
+      ${NavigationBar}
+
       <div class="center_wrap">
         <div>
           <div>
@@ -814,46 +838,47 @@ function thePastePage(loggedIn, dpLink) {
           <button id="create_paste_submit" type="submit">Create New Paste</button>
         </div>
         </div>
-        
+
         <div>${loginBlock}</div>
-        
+
         </div>
-        
+
       <div class="theFooter">
         <ul>
           <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
         </ul>
       </div>
-      
+
       <script src="/ui/pasteBrain.js"></script>
       ${loadMainScriptHtml}
-    
+      <script type="text/javascript" src="/ui/js/jquery.js"></script>
+      <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
     </body>
-    
+
     </html>
     `;
-    
+
     return pasteHtml;
 }
 
 function editProfilePage(userInfo) {
-    
+
     var proLink = userInfo.dp_link;
     var proLinkValue = proLink;
     var proBio = userInfo.bio;
-    
+
     if(proBio === null){
       proBio = "";
     }
-    
+
     if(proLink === '/ui/blank-profile-picture.png') {
         proLinkValue = "";
     }
-    
+
     var editPage = `
     <!DOCTYPE html>
     <html lang="en-US">
-    
+
     <head>
       <!-- Page Colors
             #9143c8 -> Purple
@@ -861,32 +886,43 @@ function editProfilePage(userInfo) {
           -->
       <title>Ctrl+V</title>
       <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
-    
+
       <meta charset="utf-8">
       <meta name="description" content="A place where one could paste documents and
       access it from any where in the web">
       <meta name="keywords" content="ctrl, v, paste, clipboard, online">
       <meta name="author" content="Arunava Chakraborty">
       <meta name="viewport" content="width=device-width initial-scale=2.0">
-    
+
+      <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
       <link rel="stylesheet" href="/ui/style.css">
     </head>
-    
-    
+
+
     <body class="the_body">
-    
-      <div id="theNavigationBar">
-        <ul>
-          <li><a class="navBarOption_site_name" href=''>Ctrl+V</a></li>
-          <br/>
-          <li class="navBarOptions"><a href="/">Main</a></li>
-          <li class="navBarOptions"><a href="/NewPaste">New Paste</a></li>
-          <li class="navBarOptions"><a href="#">Edit Profile</a></li>
-          <li class="navBarOptions"><a href="/browse">Browse</a></li>
-          <li class="goRight"><a href="/logout">Log Out</a></li>
-        </ul>
+
+      <div id="theNavigationBar" class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar-content">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Ctrl+V</a>
+          </div>
+          <div class="collapse navbar-collapse" id="mynavbar-content">
+            <ul class="nav navbar-nav">
+            <li><a href="/">Main</a></li>
+            <li><a href="/NewPaste">New Paste</a></li>
+            <li><a href="#">Edit Profile</a></li>
+            <li><a href="/browse">Browse</a></li>
+            <li><a href="/logout">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
-    
+
       <div class="center_wrap">
         <div>
           <div class="justMargin">
@@ -910,23 +946,25 @@ function editProfilePage(userInfo) {
           </div>
         </div>
       </div>
-      
+
       <div class="theErrorFooter">
         <ul>
           <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
         </ul>
         </div>
       <script src="/ui/profileEdit.js"></script>
+      <script type="text/javascript" src="/ui/js/jquery.js"></script>
+      <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
     </body>
     </html>
 
     `;
-    
+
     return editPage;
 }
 
 function smallProPic(picLink){
-    
+
     if(picLink == null){
         picLink = '/ui/blank-profile-picture.png';
     }
@@ -934,7 +972,7 @@ function smallProPic(picLink){
     <li class="goRight"><a class="fixPadd"><img id="theSmallProfilePicture" src=${picLink} alt="Profile Picture"
       width="40" height="40" class="small_profile_picture"/></a></li>
     `;
-    
+
     return smallDpLiHtml;
 }
 
@@ -947,12 +985,12 @@ function returnUserDpLink(req, res) {
 }
 
 function hash (input, salt) {
-    
+
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
     return ["pbkdf2", "10000", salt, hashed.toString('hex')].join('$');
 }
 
-var port = process.env.PORT; // Use 8080 for local development because you might already have apache running on 80
+var port = process.env.PORT || 8080; // Use 8080 for local development because you might already have apache running on 80
 app.listen(port, function () {
   console.log(`Listening on ${port}!\nWelcome to Ctrl+V`);
 });

@@ -17,6 +17,7 @@
 .the_body {
   background: #e1bee7;
   font-family: 'Syncopate', 'Helvetica';
+  box-sizing: content-box;
   padding: 0;
   margin: 0;
 }
@@ -46,7 +47,7 @@
   text-align: center;
   margin: auto;
   padding: 22px 95px;
-  width: 60%;
+  width: 80%;
   background-color: #fff;
 }
 
@@ -57,26 +58,15 @@
   margin-top: 8%;
 }
 
-form{
-
-}
-
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #872be7;
 }
 
 li {
   text-decoration: none;
-}
-
-.navBarOptions {
-  float: left;
-  margin-left: 35px;
-  margin-right: 10px;
 }
 
 .goRight {
@@ -125,15 +115,7 @@ li a {
   padding: 14px 16px;
   width: 150px;
   text-decoration: none;
-  transition: box-shadow 0.5s;
-}
-
-li a:hover {
-  box-shadow: 0px 8px 8px rgba(0,0,0,0.14);
-}
-
-li a::selection {
-  box-shadow: 0px 8px 8px rgba(0,0,0,0.14);
+  transition: color 0.25s;
 }
 
 textarea {
@@ -180,11 +162,6 @@ textarea {
 
 .theFooter {
   margin-top: 20px;
-}
-
-#theNavigationBar {
-  padding: 0;
-  margin: 0;
 }
 
 .toLeft{
@@ -290,30 +267,29 @@ textarea {
 }
 
 hr {
-  color: #dbdcdd;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-top: 1px solid #d0d4dd;
   opacity: 0.5;
 }
 
 button {
   background-color: #4CAF50;
   border: none;
-  color: white;
+  color: white !important;
   padding: 15px 32px;
   text-align: center;
   font-family: inherit;
   text-decoration: none;
-  display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
-  cursor: pointer;
-  width: 100%;
   -webkit-transition: box-shadow 0.75s, background-color 0.75s;
-  transition: box-shadow 0.75s, background-color 0.75s;
+  transition: box-shadow 0.75s, background-color 0.50s;
 }
 
 button:hover{
   background-color: #69c66d;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 5px 6px 0 rgba(0,0,0,0.12), 0 2px 3px 0 rgba(0,0,0,0.11);
 }
 
 #addCopyImage > button {
@@ -363,6 +339,7 @@ label{
   box-shadow: 5px 5px 12px #888;
   padding: 20px;
   margin: auto;
+  box-sizing: content-box;
 }
 
 .create_account_box{
@@ -497,8 +474,6 @@ label{
 #theNavigationBar {
     position: fixed;
     z-index: 1000;
-    left: 0;
-    right: 0;
     width: 100%;
     -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
     -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
@@ -510,28 +485,13 @@ label{
   padding-top: 100px;
 }
 
-.container {
-    overflow: hidden;
-    background-color: #333;
-    font-family: Arial;
-}
-
-.container a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
 .dropdown {
     float: left;
     overflow: hidden;
 }
 
 .dropdown .dropbtn {
-    font-size: 16px;    
+    font-size: 16px;
     border: none;
     outline: none;
     color: white;

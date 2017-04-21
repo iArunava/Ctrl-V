@@ -15,7 +15,6 @@
 .the_body {
   background: #e1bee7;
   font-family: 'Syncopate', 'Helvetica';
-  box-sizing: content-box;
   padding: 0;
   margin: 0;
 }
@@ -227,17 +226,9 @@ li a {
 }
 
 .getComfortable {
-  margin: 20px 50px;
-  padding: 10px 20px;
   font-size: 20px;
   letter-spacing: 1px;
   line-height: 35px;
-  max-width: 2500px;
-}
-
-.getSomeSpace{
-  margin: 20px 50px;
-  padding: 10px 20px;
 }
 
 .modal_content {

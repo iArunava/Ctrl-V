@@ -175,13 +175,21 @@ var NavigationBar = `
 </div>
 `;
 
-var config = {
+/*var config = {
     user: 'lqrjqvrbvvigaw',
     database: 'd5hsecam0tgn0c',
     host: 'ec2-54-243-185-132.compute-1.amazonaws.com',
     port: '5432',
     password: process.env.DATABASE_PASS
-};
+};*/
+
+var config = {
+    user: 'postgres',
+    database: 'postgres',
+    host: '127.0.0.1',
+    port: '5432',
+    password: 'postgres'
+}
 
 var app = express();
 app.use(morgan('combined'));
@@ -675,29 +683,44 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
 
     ${NavigationBar}
 
-      <div class="topPadd">
+      <div class="container topPadd">
 
-      <div class="getSomeSpace">
-      <div>
+      <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h2>${title}</h2>
       </div>
-      <div>
+      </div>
+
+      <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h5>${author}</h5>
       </div>
-      <div>
+      </div>
+
+      <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <h6>${time}</h6>
       </div>
-      <div>
+      </div>
+
+      <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <span class="makeItBold">Paste Live At:</span> <input id="theExtraOrdinaryText" type="text" value=${completeLink}>
       <copy-button id="addCopyImage" target-element="#theExtraOrdinaryText"><img src="/ui/Copy-50.png" title="Copy" width="40" height="40"></copy-button>
-      </div>
-
       <hr/>
+      </div>
+      </div>
 
+      <div class="row getComfortable">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <p class="showAsFormatted">
+      <div class="form-group">
+        <textarea class="form-control ctrlvTextArea pasteCreatorArea">${body}</textarea>
       </div>
-      <div class="getComfortable">
-      <p class="showAsFormatted"><textarea cols="165" rows="20">${body}</textarea></p>
+      </p>
       </div>
+      </div>
+
       </div>
       <script type="text/javascript" src="/ui/js/jquery.js"></script>
       <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
@@ -901,7 +924,7 @@ function thePastePage(loggedIn, dpLink) {
           </div>
 
           <br/>
-          
+
           <div class="row">
             <div id="footerOptionsNewPaste">
 
@@ -978,10 +1001,7 @@ function editProfilePage(userInfo) {
     <html lang="en-US">
 
     <head>
-      <!-- Page Colors
-            #9143c8 -> Purple
-            #06a209 -> Green
-          -->
+
       <title>Ctrl+V</title>
       <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
 
@@ -990,7 +1010,7 @@ function editProfilePage(userInfo) {
       access it from any where in the web">
       <meta name="keywords" content="ctrl, v, paste, clipboard, online">
       <meta name="author" content="Arunava Chakraborty">
-      <meta name="viewport" content="width=device-width initial-scale=2.0">
+      <meta name="viewport" content="width=device-width initial-scale=1.0">
 
       <link rel="stylesheet" type="text/css" href="/ui/css/bootstrap.css">
       <link rel="stylesheet" href="/ui/style.css">

@@ -180,7 +180,7 @@ var config = {
     database: 'd5hsecam0tgn0c',
     host: 'ec2-54-243-185-132.compute-1.amazonaws.com',
     port: '5432',
-    password: '158426c9c75437748cafda1e736a8d52cab53396a582d06c180401bcd10d14c7'
+    password: process.env.DATABASE_PASS
 };
 
 var app = express();
@@ -865,10 +865,7 @@ function thePastePage(loggedIn, dpLink) {
     <html lang="en-US">
 
     <head>
-      <!-- Page Colors
-            #9143c8 -> Purple
-            #06a209 -> Green
-          -->
+
       <title>Ctrl+V</title>
       <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
 
@@ -887,29 +884,56 @@ function thePastePage(loggedIn, dpLink) {
 
       ${NavigationBar}
 
-      <div class="center_wrap">
-        <div>
-          <div>
-            <textarea id="main_paste" cols="100" rows="30"></textarea>
+      <div class="container topPadd">
+
+        <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+          <h3>Paste here:</h3>
+        </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="form-group">
+            <textarea class="form-control ctrlvTextArea pasteCreatorArea" id="main_paste"></textarea>
           </div>
-          <div>
+          </div>
+          </div>
+
+          <br/>
+          
+          <div class="row">
             <div id="footerOptionsNewPaste">
-              <div class="optionsNewPaste" id="footerOptionsNewPaste1">
-                <h3>Paste As:</h3>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div id="footerOptionsNewPaste1">
+                <label for="paste_as"><h4>Paste As:</h4></label>
                 <input type="text" class="newPstInputs" id="paste_as" placeholder="Anynomous" name="p_as" onblur="aRedMessageToggler()">
               </div>
-              <div class="optionsNewPaste" id="footerOptionsNewPaste2">
-                <h3>Title:</h3>
+              </div>
+
+              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+              <div id="footerOptionsNewPaste2">
+                <label for="paste_title"><h4>Title:</h4></label>
                 <input type="text" class="newPstInputs" id="paste_title" placeholder="Untitled" name="title_of">
               </div>
-              <div>
-              <h5 id="aRedMessage"><span class="giveMeRed">BY DEFAULT, WHEN ANONYMOUS, YOU WILL NOT BE ABLE TO EDIT OR DELETE YOUR PASTE</span></h5>
               </div>
+
+              <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+              <p id="aRedMessage" class="warningText">BY DEFAULT, WHEN ANONYMOUS, YOU WILL NOT BE ABLE TO EDIT OR DELETE YOUR PASTE</h5>
+              <hr/>
+              </div>
+              </div>
+
           </div>
         </div>
-        <hr/>
+
+        <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
         <div id="newPasteDiv">
-          <button id="create_paste_submit" type="submit">Create New Paste</button>
+          <button class="btn btn-success btn-lg ctrlvButton newPasteButton" id="create_paste_submit" type="button">Create New Paste</button>
+        </div>
         </div>
         </div>
 

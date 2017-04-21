@@ -4,7 +4,7 @@ var pasteAuthor = document.getElementById('paste_as');
 var pasteAuthorPic = document.getElementById('theSmallProfilePicture');
 
 function aRedMessageToggler() {
-    if(pasteAuthor.value === 'Anonymous'){
+    if(pasteAuthor.value === 'Anonymous' || pasteAuthor.value === "") {
         redMessage1.style.display = 'block';
     } else {
         redMessage1.style.display = 'none';
@@ -33,20 +33,20 @@ create_paste_btn.onclick = function() {
   var pasteAuthor = document.getElementById('paste_as').value;
   var pasteAuthorLink = "/ui/blank-profile-picture.png";
   var anonPaste = false;
-  
+
   if(pasteTitle === ""){
       pasteTitle = "Untitled";
   }
-  
+
   if(pasteAuthor === ""){
       pasteAuthor = "Anonymous";
       anonPaste = true;
   }
-  
+
   if(pasteAuthorPic !== null){
       pasteAuthorLink = pasteAuthorPic.src;
   }
-  
+
   var pasteTime = new Date();
 
   request.open('POST', '/create-paste', true);

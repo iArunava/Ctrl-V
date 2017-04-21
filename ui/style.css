@@ -103,9 +103,9 @@ li a {
   transition: color 0.25s;
 }
 
-textarea {
+.ctrlvTextArea {
   resize: none;
-  margin: 20px;
+  margin: auto;
   padding: 10px 20px;
   font-size: 15px;
   letter-spacing: 1px;
@@ -114,11 +114,18 @@ textarea {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
+  font-family: monospace;
 }
 
-#main_paste {
-  position: relative;
-  left: -140px;
+.ctrlvTextArea:focus {
+
+  border-color: #e38afc;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(227, 138, 252, 0.6);
+}
+
+.pasteCreatorArea {
+
+  height: 50vh !important;
 }
 
 .the_footer_login_box {
@@ -188,12 +195,6 @@ textarea {
   left: -500px;
 }
 
-.optionsNewPaste {
-  float: left;
-  display: inline;
-  width: 50%
-}
-
 #ctrlvHits {
   position: relative;
   top: -45px;
@@ -202,8 +203,9 @@ textarea {
 
 #newPasteDiv {
   padding: 20px;
-  margin: 20px;
-  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-right: 20px;
   width: 100%
 }
 
@@ -277,6 +279,15 @@ hr {
 .ctrlvButton:hover{
   background-color: #69c66d;
   box-shadow: 0 5px 6px 0 rgba(0,0,0,0.12), 0 2px 3px 0 rgba(0,0,0,0.11);
+}
+
+.ctrlvButton:focus {
+  background-color: #69c66d;
+}
+
+.newPasteButton {
+
+  width: 100%;
 }
 
 #addCopyImage > button {
@@ -359,6 +370,7 @@ input[type=text], input[type=password], input[type=email]{
 @-webkit-keyframes animatezoom{
   from {transform: scale(0)}
   to {transform: scale(1)}
+  }
 }
 
 
@@ -415,9 +427,10 @@ input[type=text], input[type=password], input[type=email]{
   cursor: pointer;
 }
 
-.giveMeRed{
-  margin-top: 15px;
+.warningText {
+  margin: auto;
   color: #f44336;
+  font-weight: 450;
 }
 
 .theErrorFooter {
@@ -450,7 +463,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .topPadd {
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .dropdown {

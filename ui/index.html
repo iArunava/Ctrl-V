@@ -2,13 +2,10 @@
 <html lang="en-US">
 
 <head>
-  <!-- Page Colors
-        #9143c8 -> Purple
-        #06a209 -> Green
-      -->
+
   <title>Ctrl+V</title>
   <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
-  
+
 
   <meta charset="utf-8">
   <meta name="description" content="A place where one could paste documents and
@@ -24,103 +21,166 @@
 
 
 <body class="the_body">
-  <div class="container">
-  <div class="center_wrap paddZero">
-    <div class="row the_title" >
-      <img src="/ui/ctrlVIcon.png" alt="ctrlVICon"
-      width="130" height="130" class="the_ctrl_v_icon" />
-    </div>
-      <br/><br/><br/>
-      <div class="row">
-      <h1 class="the_name title_page_name">Ctrl+V</h1>
-    </div>
-    <div class=" row the_box">
-      <div>
 
-        <button class="ripple" type="button"
-        onclick="document.getElementById('create_account_form')
-        .style.display='block'">Create New Account</button>
+<!---MODALS--------------------------------------------------------->
+  <!-- The Create Account form -->
+  <div id="create_account_form" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <div class="modal_content">
 
-        <br/>
-        <hr/>
-        <a class="newPasteLink" href="/NewPaste"><button class="ripple" id="create_paste_submit" type="button">Create New Paste</button></a>
-        <br/>
-        <hr/>
-        <button class="ripple" type="button"
-        onclick="document.getElementById('login_form')
-        .style.display='block'">Login</button>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Create Account</h4>
+        </div>
+
+        <div class="modal-body">
+
+        <div class="">
+          <form class="form">
+
+            <div class="form-group">
+              <label for="fname_create"><b>First Name<sup>*</sup></b></label>
+              <input class="form-control" type="text" id="fname_create" placeholder="First Name" name="fname"
+               required autofocus>
+           </div>
+          <div class="form-group">
+            <label for="lname_create"><b>Last Name</b></label>
+            <input class="form-control" type="text" id="lname_create" placeholder="Last Name" name="lname">
+          </div>
+          <br/><br/>
+
+          <div class="form-group">
+            <label for="email_create"><b>Email<sup>*</sup></b></label>
+            <input class="form-control" type="email" id="email_create" placeholder="Email" name="elec-mail" required>
+          </div>
+
+          <div class="form-group">
+            <label for="uname"><b>Username<sup>*</sup></b></label>
+            <input class="form-control" type="text" id="uname" placeholder="Username" name="u_name" required>
+          </div>
+          <br/><br/>
+
+          <div class="form-group">
+            <label for="pwd_create"><b>Password<sup>*</sup></b></label>
+            <input class="form-control" type="password" id="pwd_create" placeholder="Password" name="passwd" required>
+          </div>
+
+          <div class="form-group">
+            <label><b>Confirm Password<sup>*</sup></b></label>
+            <input class="form-control" type="password" placeholder="Re-Type Password" name="c_passwd" required>
+          </div>
+          <br/>
+
+         </form>
+
+          <hr/>
+          <div class="loader"></div>
+          <button class="ctrlvButton" id="create_account_form_submit" type="submit">Create New Account</button>
+        </div>
+        </div>
+
       </div>
+    </div>
+
+    </div>
+  </div>
+
+
+  <!-- The Login form -->
+  <div id="login_form" class="modal fade">
+    <div class="modal-dialog modal-lg">
+      <div class="modal_content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Login</h4>
+        </div>
+
+        <div class="modal-body">
+      <div class="">
+
+        <div class="create_account_box">
+          <form class="form">
+
+          <div class="form-group">
+          <label for="the_uname_login"><b>Username</b></label>
+          <input class="form-control" type="text" placeholder="Username" name="uname" id="the_uname_login" required>
+          <br/><br/>
+          </div>
+
+          <div class="form-group">
+          <label for="the_passwd_login"><b>Password</b></label>
+          <input class="form-control" type="password" placeholder="Password" name="p_asswd" id="the_passwd_login" required>
+          <br/><br/>
+          </div>
+
+        </form>
+
+          <hr/>
+          <div class="loader"></div>
+          <button class="ctrlvButton" id="login_btn" type="submit">Login</button>
+        </div>
+      </div>
+    </div>
+
     </div>
   </div>
 </div>
 
-  <!-- The Create Account form -->
-  <div id="create_account_form" class="modal_form">
-    <div class="the_login_box the_box animate">
-
-        <span onclick="document.getElementById('create_account_form')
-        .style.display='none'" class="theCloseButton"
-        title="Close">&times;</span>
+  <!---MODALS END------------------------------------------------------------->
 
 
-        <div class="create_account_box">
-          <label><b>First Name<sup>*</sup></b></label>
-          <input class="requiredClass1" type="text" id="fname_create" placeholder="First Name" name="fname"
-           required autofocus>
+  <div class="container">
+  <div>
 
-          <label><b>Last Name</b></label>
-          <input class="requiredClass1" type="text" id="lname_create" placeholder="Last Name" name="lname">
-          <br/><br/><br/><br/>
+    <div class="row the_title" >
+      <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+        <img src="/ui/ctrlVIcon.png" alt="ctrlVICon"
+        width="130" height="130" class="the_ctrl_v_icon" />
+      </div>
+    </div>
 
-          <label><b>Email<sup>*</sup></b></label>
-          <input class="requiredClass1" type="email" id="email_create" placeholder="Email" name="elec-mail" required>
+    <div class="row">
+      <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+        <h1 class="the_name title_page_name">Ctrl+V</h1>
+      </div>
+    </div>
 
-          <label class="label_uname_padding"><b>Username<sup>*</sup></b></label>
-          <input class="requiredClass1" type="text" id="uname" placeholder="Username" name="u_name" required>
-          <br/><br/><br/><br/>
+    <br/></br/>
 
-          <label class="label_passwd_padding"><b>Password<sup>*</sup></b></label>
-          <input class="requiredClass1" type="password" id="pwd_create" placeholder="Password" name="passwd" required>
-          <br/><br/><br/><br/>
+    <div class="row">
+      <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+        <div class="the_box">
 
-          <label><b>Confirm Password<sup>*</sup></b></label>
-          <input class="requiredClass1" type="password" placeholder="Re-Type Password" name="c_passwd" required>
-           <br/><br/><br/><br/>
-
-          <hr/>
-          <div class="loader"></div>
-          <button class="ripple" id="create_account_form_submit" type="submit">Create New Account</button>
+        <div class="row">
+          <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+            <button class="btn btn-primary btn-lg ctrlvButton" data-toggle="modal" data-target="#create_account_form" type="button">Create New Account</button>
+            <br/>
+            <hr/>
+          </div>
         </div>
 
-    </div>
-  </div>
-  
-
-  <!-- The Login form -->
-  <div id="login_form" class="modal_form">
-    <div class="animate the_box the_login_box">
-      <span onclick="document.getElementById('login_form')
-      .style.display='none'" class="theCloseButton"
-      title="Close">&times;</span>
-
-        <div class="create_account_box">
-
-          <label><b>Username</b></label>
-          <input class="requiredClass1" type="text" placeholder="Username" name="uname" id="the_uname_login" required>
-          <br/><br/>
-
-          <label><b>Password</b></label>
-          <input class="requiredClass1" type="password" placeholder="Password" name="p_asswd" id="the_passwd_login" required>
-          <br/><br/>
-
+        <div class="row">
+        <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+          <a class="newPasteLink" href="/NewPaste"><button class="ctrlvButton" id="create_paste_submit" type="button">Create New Paste</button></a>
+          <br/>
           <hr/>
-          <div class="loader"></div>
-          <button class="ripple" id="login_btn" type="submit">Login</button>
         </div>
-        
+      </div>
+
+        <div class="row">
+          <div class="col-md-10 col-xs-10 col-sm-10 col-lg-10 col-xs-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-offset-1">
+            <button class="btn btn-primary btn-lg ctrlvButton" data-toggle="modal" data-target="#login_form" type="button">Login</button>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
-  
+  </div>
+</div>
+</div>
+
   <script src="/ui/main.js"></script>
   <script type="text/javascript" src="/ui/js/jquery.js"></script>
   <script type="text/javascript" src="/ui/js/bootstrap.js"></script>

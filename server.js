@@ -10,77 +10,143 @@ var session = require('express-session');
 var loggedInSign = ``;
 var LoggedIn = false;
 var LoginBlock = `
-<div id="loginBlock">
+<div id="loginBlock" class="row">
+<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+<div class="row">
+<div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
       <div class="the_footer_login_box">
         <div class="justBoxIt">
-          <div>
-            <img id="theBlankProPic" src="/ui/blank-profile-picture.png" alt="Blank Profile Picture" height="100" width="100" />
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+            <img id="theBlankProPic" class="img-circle img-responsive" src="/ui/blank-profile-picture.png" alt="Blank Profile Picture" height="100" width="100" />
           </div>
-          <div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
             <h4>Hello Guest</h4>
           </div>
-          <div>
-            <div>
-              <button id="" type="submit" onclick="document.getElementById('create_account_form')
-              .style.display='block'">Sign Up</button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+              <button class="btn btn-primary ctrlvButton" type="button" data-toggle="modal" data-target="#create_account_form">Sign Up</button>
             </div>
-            <div>
-              <button id="" type="submit" onclick="document.getElementById('login_form')
-              .style.display='block'">Sign In</button>
             </div>
+
+            <div class="row">
+              <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12">
+              <button class="btn btn-primary ctrlvButton" type="button" data-toggle="modal" data-target="#login_form">Sign In</button>
+            </div>
+          </div>
           </div>
         </div>
       </div>
     </div>
+    </div>
+    </div>
 
     <!-- The Create Account form -->
-    <div id="create_account_form" class="modal_form">
-      <div class="the_login_box the_box animate">
-          <span onclick="document.getElementById('create_account_form')
-          .style.display='none'" class="theCloseButton"
-          title="Close">&times;</span>
-          <div class="create_account_box">
-            <label><b>First Name<sup>*</sup></b></label>
-            <input class="requiredClass1" type="text" id="fname_create" placeholder="First Name" name="fname"
-             required autofocus>
-            <label><b>Last Name</b></label>
-            <input class="requiredClass1" type="text" id="lname_create" placeholder="Last Name" name="lname">
-            <br/><br/><br/><br/>
-            <label><b>Email<sup>*</sup></b></label>
-            <input class="requiredClass1" type="email" id="email_create" placeholder="Email" name="elec-mail" required>
-            <label class="label_uname_padding"><b>Username<sup>*</sup></b></label>
-            <input class="requiredClass1" type="text" id="uname" placeholder="Username" name="u_name" required>
-            <br/><br/><br/><br/>
-            <label class="label_passwd_padding"><b>Password<sup>*</sup></b></label>
-            <input class="requiredClass1" type="password" id="pwd_create" placeholder="Password" name="passwd" required>
-            <br/><br/><br/><br/>
-            <label><b>Confirm Password<sup>*</sup></b></label>
-            <input class="requiredClass1" type="password" placeholder="Re-Type Password" name="c_passwd" required>
-             <br/><br/><br/><br/>
+    <div id="create_account_form" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal_content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Create Account</h4>
+          </div>
+
+          <div class="modal-body">
+
+          <div class="">
+            <form class="form">
+
+              <div class="form-group">
+                <label for="fname_create"><b>First Name<sup>*</sup></b></label>
+                <input class="form-control" type="text" id="fname_create" placeholder="First Name" name="fname"
+                 required autofocus>
+             </div>
+            <div class="form-group">
+              <label for="lname_create"><b>Last Name</b></label>
+              <input class="form-control" type="text" id="lname_create" placeholder="Last Name" name="lname">
+            </div>
+            <br/><br/>
+
+            <div class="form-group">
+              <label for="email_create"><b>Email<sup>*</sup></b></label>
+              <input class="form-control" type="email" id="email_create" placeholder="Email" name="elec-mail" required>
+            </div>
+
+            <div class="form-group">
+              <label for="uname"><b>Username<sup>*</sup></b></label>
+              <input class="form-control" type="text" id="uname" placeholder="Username" name="u_name" required>
+            </div>
+            <br/><br/>
+
+            <div class="form-group">
+              <label for="pwd_create"><b>Password<sup>*</sup></b></label>
+              <input class="form-control" type="password" id="pwd_create" placeholder="Password" name="passwd" required>
+            </div>
+
+            <div class="form-group">
+              <label><b>Confirm Password<sup>*</sup></b></label>
+              <input class="form-control" type="password" placeholder="Re-Type Password" name="c_passwd" required>
+            </div>
+            <br/>
+
+           </form>
+
             <hr/>
             <div class="loader"></div>
-            <button id="create_account_form_submit" type="submit">Create New Account</button>
+            <button class="ctrlvButton" id="create_account_form_submit" type="submit">Create New Account</button>
           </div>
+          </div>
+
+        </div>
+      </div>
+
       </div>
     </div>
 
+
     <!-- The Login form -->
-    <div id="login_form" class="modal_form">
-      <div class="animate the_box the_login_box">
-        <span onclick="document.getElementById('login_form')
-        .style.display='none'" class="theCloseButton"
-        title="Close">&times;</span>
+    <div id="login_form" class="modal fade">
+      <div class="modal-dialog modal-lg">
+        <div class="modal_content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Login</h4>
+          </div>
+
+          <div class="modal-body">
+        <div class="">
+
           <div class="create_account_box">
-            <label><b>Username</b></label>
-            <input class="requiredClass1" type="text" placeholder="Username" name="uname" id="the_uname_login" required>
+            <form class="form">
+
+            <div class="form-group">
+            <label for="the_uname_login"><b>Username</b></label>
+            <input class="form-control" type="text" placeholder="Username" name="uname" id="the_uname_login" required>
             <br/><br/>
-            <label><b>Password</b></label>
-            <input class="requiredClass1" type="password" placeholder="Password" name="p_asswd" id="the_passwd_login" required>
+            </div>
+
+            <div class="form-group">
+            <label for="the_passwd_login"><b>Password</b></label>
+            <input class="form-control" type="password" placeholder="Password" name="p_asswd" id="the_passwd_login" required>
             <br/><br/>
+            </div>
+
+          </form>
+
             <hr/>
             <div class="loader"></div>
-            <button id="login_btn" type="submit">Login</button>
+            <button class="ctrlvButton" id="login_btn" type="submit">Login</button>
           </div>
+        </div>
+      </div>
+
       </div>
     </div>
   </div>
@@ -432,13 +498,21 @@ function errorTemplate(errorMessage, loggedIn, dpLink){
 
     ${NavigationBar}
 
-    <div class="center_wrap">
+    <div class="container center_wrap">
 
-      <div class="atCenter">
-      <h3>${errorMessage}</h3>
+      <div class="row">
+        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-offset-3
+        col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+          <h3>${errorMessage}</h3>
+        </div>
       </div>
 
-    <div class="topMargin1">${loginBlock}</div>
+    <div class="row">
+      <div class="col-md-8 col-xs-8 col-sm-8 col-lg-8 col-xs-offset-2
+      col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        <div class="topMargin1">${loginBlock}</div>
+      </div>
+    </div>
 
     </div>
 

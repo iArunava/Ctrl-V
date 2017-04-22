@@ -44,6 +44,14 @@
   background-color: #fff;
 }
 
+@media only screen and (max-width: 332px) {
+
+  .the_box {
+
+    padding: 20px 10px;
+  }
+}
+
 .the_login_box {
   border: 2px solid #f1f1f1;
   box-shadow: 10px 8px 15px rgba(0,0,0,0.14),
@@ -67,7 +75,10 @@ li {
 }
 
 .justMargin {
-  margin: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .thePasteBox {
@@ -256,7 +267,6 @@ hr {
   margin: 4px 2px;
   -webkit-transition: box-shadow 0.75s, background-color 0.75s;
   transition: box-shadow 0.75s, background-color 0.50s;
-  width: 60%;
 }
 
 .ctrlvButton:hover{
@@ -294,9 +304,9 @@ hr {
 
 input[type=text], input[type=password], input[type=email]{
   padding: 10px 10px;
-  display: inline-block;
+  display: block;
   box-sizing: border-box;
-  margin: 5px 0;
+  margin: auto;
 }
 
 
@@ -320,12 +330,12 @@ input[type=text], input[type=password], input[type=email]{
 
 .marginsForDpLink {
   margin-top: 30px;
-  margin-left: 245px;
   margin-bottom: 10px;
 }
 
 .proLinkInput {
-  width: 50%;
+  margin: 0 auto;
+  width: 80%;
 }
 
 .theCloseButton {
@@ -402,7 +412,9 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .aShortPasteLayout {
-  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .aShortPasteLayout:hover {

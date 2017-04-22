@@ -567,20 +567,20 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a class="dontDecorate" href="`+link+`">
-              <h3>`+title+`</h3>
+              <h4>`+title+`</h4>
             </a>
           </div>
           </div>
 
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h4>`+author+`</h4>
+          <h5>`+author+`</h5>
           </div>
           </div>
 
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="goAsh">`+time+`</h5>
+          <small class="goAsh">`+time+`</small>
           </div>
           </div>
 
@@ -604,7 +604,7 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
       access it from any where in the web">
       <meta name="keywords" content="ctrl, v, paste, clipboard, online">
       <meta name="author" content="Arunava Chakraborty">
-      <meta name="viewport" content="width=device-width initial-scale=2.0">
+      <meta name="viewport" content="width=device-width initial-scale=1.0">
 
       <link rel="stylesheet" href="/ui/pastes/bower_components/css-ripple-effect/dist/ripple.min.css">
 
@@ -617,15 +617,26 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
 
       ${NavigationBar}
 
-      <div class="center_wrap">
-        <div class="the_box paddTop">
-          <h2>Recent Pastes:</h2>
-          <hr/>
+      <div class="container center_wrap">
 
-          <div>
-          ${theTotalLayout}
+      <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="the_box paddTop">
+
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>Recent Pastes:</h4>
+          <hr/>
+          </div>
           </div>
 
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          ${theTotalLayout}
+          </div>
+          </div>
+
+          </div>
           </div>
           </div>
 
@@ -769,20 +780,20 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <a class="dontDecorate" href="`+link+`">
-              <h3>`+title+`</h3>
+              <h4>`+title+`</h4>
             </a>
           </div>
           </div>
 
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h4>`+author+`</h4>
+          <h5>`+author+`</h5>
           </div>
           </div>
 
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h5 class="goAsh">`+time+`</h5>
+          <small class="goAsh">`+time+`</small>
           </div>
           </div>
 
@@ -1078,29 +1089,65 @@ function editProfilePage(userInfo) {
         </div>
       </div>
 
-      <div class="center_wrap">
-        <div>
+      <div class="container center_wrap">
+
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="justMargin">
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <div class="topMargin1">
-            <img id="theProfilePicture" src=${proLink} alt="Profile Picture"
-            width="130" height="130" class="profile_picture" />
+            <img id="theProfilePicture" class="img-responsive profile_picture" src=${proLink} alt="Profile Picture"
+            width="130" height="130" />
             </div>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
             <div class="marginsForDpLink">
             <input class="proLinkInput" type="text" id="dpLink" placeholder="Link to Your Profile Picture" value=${proLinkValue} name="dpLink" onblur="loadTheImage()">
+            <hr/>
             </div>
+            </div>
+            </div>
+
           </div>
-          <hr/>
-          <div>
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <h4><div style="display:flex;justify-content:center;align-items:center;">Edit Bio</div></h4>
-            <textarea id="theBioArea" cols="71" rows="10" maxLength="300">${proBio}</textarea>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group">
+            <textarea id="theBioArea" class="form-control ctrlvTextArea" rows="10" maxLength="300">${proBio}</textarea>
+            </div>
+            <hr/>
           </div>
-          <hr/>
+          </div>
+
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div class="loader"></div>
-          <div class="justMargin">
-            <button id="editProfileSave" type="submit">Save Changes</button>
+          <div class="text-center justMargin">
+            <button class="btn btn-success btn-lg ctrlvButton" id="editProfileSave" type="submit">Save Changes</button>
           </div>
+          </div>
+          </div>
+
         </div>
-      </div>
 
       <div class="theErrorFooter">
         <ul>

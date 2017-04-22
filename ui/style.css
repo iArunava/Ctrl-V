@@ -179,11 +179,6 @@ li a {
   color: white;
 }
 
-.identifier_1 {
-  padding: 50px;
-  float: left;
-}
-
 .footerOptions {
   width: 100%;
 }
@@ -219,10 +214,7 @@ li a {
   text-align: center;
   margin: auto;
   padding: 22px 95px;
-  width: 60%;
   background-color: #fff;
-  position: relative;
-  left: 480px;
 }
 
 .getComfortable {

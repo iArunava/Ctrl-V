@@ -559,23 +559,34 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
         usernameLink = "/users/"+username;
 
         theTotalLayout += `
-        <a class="dontDecorate" href="`+link+`">
-          <div class="aShortPasteLayout the_box">
-            <div>
-            <div>
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="aShortPasteLayout the_box">
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <a class="dontDecorate" href="`+link+`">
               <h3>`+title+`</h3>
-            </div>
-            <a class="dontDecorate" href="">
-            <div>
-              <h4>`+author+`</h4>
-            </div>
             </a>
-            </div>
-            <div>
-              <h5 class="goAsh">`+time+`</h5>
-            </div>
           </div>
-          </a>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>`+author+`</h4>
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h5 class="goAsh">`+time+`</h5>
+          </div>
+          </div>
+
+          </div>
+          </div>
+          </div>
     `;
     }
 
@@ -584,10 +595,7 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
     <html lang="en-US">
 
     <head>
-      <!-- Page Colors
-            #9143c8 -> Purple
-            #06a209 -> Green
-          -->
+
       <title>Ctrl+V</title>
       <link rel="shortcut icon" type="image/gif/png" href="favicon.ico" />
 
@@ -753,23 +761,34 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
         usernameLink = "http://arunavadw.imad.hasura-app.io/users/"+username;
 
         ctrlvRecents += `
-        <a class="dontDecorate" href="`+link+`">
-          <div class="aShortPasteLayout the_box">
-            <div>
-            <div>
+        <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <div class="aShortPasteLayout the_box">
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <a class="dontDecorate" href="`+link+`">
               <h3>`+title+`</h3>
-            </div>
-            <a class="dontDecorate" href="">
-            <div>
-              <h4>`+author+`</h4>
-            </div>
             </a>
-            </div>
-            <div>
-              <h5 class="goAsh">`+time+`</h5>
-            </div>
           </div>
-          </a>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h4>`+author+`</h4>
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h5 class="goAsh">`+time+`</h5>
+          </div>
+          </div>
+
+          </div>
+          </div>
+          </div>
         `;
         }
 
@@ -815,43 +834,69 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
               <ul class="nav navbar-nav">
               <li><a href="/">Main</a></li>
               <li><a href="/NewPaste">New Paste</a></li>
-              <li><a href="#">Edit Profile</a></li>
+              <li><a href="/EditProfile">Edit Profile</a></li>
               <li><a href="/browse">Browse</a></li>
-              <li><a href="/logout">Log Out</a></li>
+              <li class="goRight"><a href="/logout">Log Out</a></li>
               </ul>
             </div>
           </div>
         </div>
 
-          <div class="center_wrap">
-            <div id="identifier_main">
-              <div class="identifier_1">
-                <img id="theProfilePicture" src=${proPic} alt="Profile Picture"
-                width="130" height="130" class="profile_picture" />
-              </div>
-              <div class="identifier_1">
-                <div>
-                  <h1 id="theFName">${firstName}</h1>
-                </div>
-                <div>
-                  <p id="theUserBio">${userBio}</p>
-                </div>
-              </div>
+        <div class="container center_wrap">
+
+        <div class="row">
+        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+              <img class="img-responsive img-circle profile_picture" id="theProfilePicture" src=${proPic} alt="Profile Picture"
+              width="130" height="130" />
             </div>
-            <div id="identifier_next">
-              <div>
-                <h2 id="ctrlvHitsHeader">Ctrl+V Hits:</h2><span id="ctrlvHits">${ctrlvHits}<span>
-              </div>
-              <div id="identifier_show_ctrlv">
-                <div>
-                  <h2>Recent Ctrl+V by you:</h2>
-                </div>
-                <div id="ctrlvhitsbox">
-                ${ctrlvRecents}
-                </div>
-              </div>
+
+            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+
+            <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3 id="theFName">${firstName}</h3>
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <p id="theUserBio">${userBio}</p>
+            </div>
             </div>
           </div>
+          <hr/>
+          </div>
+
+          <br/><br/>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div>
+          <h5 id="ctrlvHitsHeader">Ctrl+V Hits:</h5><span id="ctrlvHits">${ctrlvHits}<span>
+          </div>
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <h5>Recent Ctrl+V by you:</h5>
+          </div>
+          </div>
+
+          <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div id="ctrlvhitsbox">
+            ${ctrlvRecents}
+          </div>
+          </div>
+          </div>
+
+        </div>
+        </div>
+        </div>
 
           <script src="/ui/main.js"></script>
           <script type="text/javascript" src="/ui/js/jquery.js"></script>

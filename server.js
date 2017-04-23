@@ -1079,7 +1079,7 @@ function thePastePage(loggedIn, dpLink) {
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
               <div class="" id="footerOptionsNewPaste1">
                 <label for="paste_as"><h4>Paste As:</h4></label>
-                <input type="text" class="newPstInputs" id="paste_as" placeholder="Anynomous" name="p_as" onblur="aRedMessageToggler()">
+                <input type="text" class="newPstInputs" id="paste_as" placeholder="Anonymous" name="p_as" onblur="aRedMessageToggler()">
               </div>
               </div>
 

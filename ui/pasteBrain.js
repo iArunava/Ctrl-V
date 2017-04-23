@@ -2,8 +2,22 @@ var create_paste_btn = document.getElementById('create_paste_submit');
 var redMessage1 = document.getElementById('aRedMessage');
 var pasteAuthor = document.getElementById('paste_as');
 var pasteAuthorPic = document.getElementById('theSmallProfilePicture');
+var PasteBody = document.getElementById('main_paste');
 var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
                   'Sep', 'Oct', 'Nov', 'Dec'];
+
+PasteBody.oninput = function () {
+
+  if (PasteBody.value === "") {
+    create_paste_btn.disabled = true;
+  } else {
+    create_paste_btn.disabled = false;
+  }
+}
+
+if (PasteBody.value === "") {
+  create_paste_btn.disabled = true;
+}
 function aRedMessageToggler() {
     if(pasteAuthor.value === 'Anonymous' || pasteAuthor.value === "") {
         redMessage1.style.display = 'block';
@@ -29,7 +43,7 @@ create_paste_btn.onclick = function() {
     }
   };
 
-  var pasteBody = document.getElementById('main_paste').value;
+  var pasteBody = PasteBody.value;
   var pasteTitle = document.getElementById('paste_title').value;
   var pasteAuthor = document.getElementById('paste_as').value;
   var pasteAuthorLink = "/ui/blank-profile-picture.png";

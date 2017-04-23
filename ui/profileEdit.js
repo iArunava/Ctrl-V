@@ -13,7 +13,7 @@ function loadTheImage(){
 }
 
 theDpLink.onfocus = function() {
-  if (theDpLink.value = "Link to Your Profile Picture Here") {
+  if (theDpLink.value === "Link to Your Profile Picture Here") {
     theDpLink.value = "";
   }
 
@@ -30,9 +30,10 @@ editSaveBtn.onclick = function() {
     if(request.readyState === XMLHttpRequest.DONE){
       if(request.status === 200){
           loader[0].style.display = "none";
-          editSaveBtn.innerHTML = "Changes Saved";
-          setTimeout(editSaveBtn.innerHTML = "Save Changes", 700);
+          editSaveBtn.innerHTML = "Changes&nbsp;Saved";
+          setTimeout(function() {editSaveBtn.innerHTML = "Save Changes";}, 700);
       } else {
+        loader[0].style.display = "none";
         alert("Some Internal Error Occured!\nPlease Try Again Later!");
         editSaveBtn.innerHTML = "Save Changes";
       }

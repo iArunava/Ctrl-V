@@ -3,19 +3,24 @@ var login_btn = document.getElementById('login_btn');
 var loader = document.getElementsByClassName('loader');
 
 login_btn.onclick = function() {
-    
+
     loader[1].style.display = "inline-block";
     login_btn.innerHTML = "Logging You In...";
-    
+
     var request = new XMLHttpRequest();
 
     request.onreadystatechange = function() {
-    
+
     if(request.readyState === XMLHttpRequest.DONE){
         if(request.status === 200){
             loader[1].style.display = "none";
             login_btn.innerHTML = "Log In";
-            location.reload();
+
+            if (window.location.href.split('/').reverse()[0] === "logout") {
+              location.href = "/";
+            } else {
+              location.reload();
+            }
         } else {
             alert("Some Internal Error Occured!\nPlease Try Again Later!");
             login_btn.innerHTML = "Log In";
@@ -34,7 +39,7 @@ login_btn.onclick = function() {
 
 
 create_account_btn.onclick = function() {
-  
+
   loader[0].style.display = "inline-block";
   create_account_btn.innerHTML = "Creating Your Account...";
   var request = new XMLHttpRequest();

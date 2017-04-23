@@ -1237,8 +1237,9 @@ function editProfilePage(userInfo) {
 
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="loader"></div>
           <div class="text-center justMargin">
+            <div class="loader"></div>
+            <br/>
             <button class="btn btn-success btn-lg ctrlvButton" id="editProfileSave" type="submit">Save Changes</button>
           </div>
           </div>

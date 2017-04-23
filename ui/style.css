@@ -427,7 +427,7 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   display: none;
   border: 6px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 6px solid #3498db;
+  border-top: 6px solid #d4a2ef;
   width: 20px;
   height: 20px;
   -webkit-animation: spin 2s linear infinite;

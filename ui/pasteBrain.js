@@ -6,6 +6,14 @@ var PasteBody = document.getElementById('main_paste');
 var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
                   'Sep', 'Oct', 'Nov', 'Dec'];
 
+pasteAuthor.oninput = function () {
+  if (pasteAuthor.value.toLowerCase() === "founder" || pasteAuthor.value.toLowerCase() === "arunava") {
+    create_paste_btn.disabled = true;
+  } else {
+    create_paste_btn.disabled = false;
+  }
+}
+
 PasteBody.oninput = function () {
 
   if (PasteBody.value === "") {

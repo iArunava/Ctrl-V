@@ -4,9 +4,31 @@
   padding-top: 100px;
 }
 
+a:hover {
+  background-color: transparent !important;
+}
+
+@media screen and (max-width: 767px) {
+
+  * {font-size: 10px !important;}
+  .the_name {font-size: 12px !important}
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+  * {font-size: 12px !important;}
+  .the_name {font-size: 14px !important}
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  * {
+    font-size: 15px !important;
+  }
+}
+
 .the_name {
   text-align: center;
-  font-size: 50px;
+  font-size: 50px !important;
   color: #97a899;
   font-weight: bold;
   text-shadow: 1px 1px 12px #888;
@@ -129,8 +151,8 @@ li a {
 
 .ctrlvTextArea:focus {
 
-  border-color: #e38afc;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(227, 138, 252, 0.6);
+  border-color: #d093f9;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(208, 147, 249, 0.6);
 }
 
 .pasteCreatorArea {
@@ -170,7 +192,7 @@ li a {
 }
 
 .theFooter {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .toLeft{
@@ -183,6 +205,7 @@ li a {
   border-radius: 60px;
   box-shadow: 5px 5px 12px #888;
   margin: auto;
+  height: 130px;
 }
 
 .newPasteLink {
@@ -192,6 +215,14 @@ li a {
 
 .footerOptions {
   width: 100%;
+  color: #777;
+  transition: color 0.5s;
+}
+
+.footerOptions:hover {
+  text-decoration: none;
+  background-color: transparent;
+  color: #333;
 }
 
 #identifier_next {
@@ -265,10 +296,15 @@ hr {
   text-decoration: none;
   font-size: 16px;
   margin: 4px 2px;
-  -webkit-transition: box-shadow 0.75s, background-color 0.75s;
-  transition: box-shadow 0.75s, background-color 0.50s;
+  -webkit-transition: box-shadow 0.5s, background-color 0.5s;
+  transition: box-shadow 0.5s, background-color 0.50s;
 }
 
+@media screen and (max-width: 367px) {
+  .ctrlvButton {
+    padding: 10px 12px;
+  }
+}
 .ctrlvButton:hover{
   background-color: #69c66d;
   box-shadow: 0 5px 6px 0 rgba(0,0,0,0.12), 0 2px 3px 0 rgba(0,0,0,0.11);
@@ -304,9 +340,21 @@ hr {
 
 input[type=text], input[type=password], input[type=email]{
   padding: 10px 10px;
-  display: block;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   margin: auto;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  color: #555;
+  transition: box-shadow 0.75s;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  border-color: #d093f9;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(208, 147, 249, 0.6);
 }
 
 
@@ -423,7 +471,7 @@ input[type=text], input[type=password], input[type=email]{
 }
 
 .warningText {
-  margin: auto;
+  margin: 10px;
   color: #f44336;
   font-weight: 450;
 }
@@ -503,4 +551,13 @@ input[type=text], input[type=password], input[type=email]{
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+.makeTheBackWhite {
+
+  background-color: white;
+}
+
+.paddBottom {
+  margin-bottom: 50px;
 }

@@ -175,6 +175,20 @@ var NavigationBar = `
 </div>
 `;
 
+var TheFooter = `
+<div class="container-fluid makeTheBackWhite theFooter">
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<footer>
+  <ul>
+    <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
+  </ul>
+  </footer>
+</div>
+</div>
+</div>
+`;
+
 var config = {
     user: 'lqrjqvrbvvigaw',
     database: 'd5hsecam0tgn0c',
@@ -501,9 +515,8 @@ function errorTemplate(errorMessage, loggedIn, dpLink){
     <div class="container center_wrap">
 
       <div class="row">
-        <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6 col-xs-offset-3
-        col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-          <h3>${errorMessage}</h3>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+          <h2>${errorMessage}</h2>
         </div>
       </div>
 
@@ -516,11 +529,12 @@ function errorTemplate(errorMessage, loggedIn, dpLink){
 
     </div>
 
-    <div class="theErrorFooter">
-    <ul>
-      <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
-    </ul>
+    <div class="paddBottom"></div>
+
+    <div class="navbar-fixed-bottom">
+    ${TheFooter}
     </div>
+
     ${mainJsScript}
     <script type="text/javascript" src="/ui/js/jquery.js"></script>
     <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
@@ -639,12 +653,9 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
           </div>
           </div>
           </div>
-
-          <div class="theFooter">
-            <ul>
-              <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
-            </ul>
           </div>
+
+          ${TheFooter}
 
           <script type="text/javascript" src="/ui/js/jquery.js"></script>
           <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
@@ -977,14 +988,14 @@ function thePastePage(loggedIn, dpLink) {
             <div id="footerOptionsNewPaste">
 
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-              <div id="footerOptionsNewPaste1">
+              <div class="" id="footerOptionsNewPaste1">
                 <label for="paste_as"><h4>Paste As:</h4></label>
                 <input type="text" class="newPstInputs" id="paste_as" placeholder="Anynomous" name="p_as" onblur="aRedMessageToggler()">
               </div>
               </div>
 
               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-              <div id="footerOptionsNewPaste2">
+              <div  class="" id="footerOptionsNewPaste2">
                 <label for="paste_title"><h4>Title:</h4></label>
                 <input type="text" class="newPstInputs" id="paste_title" placeholder="Untitled" name="title_of">
               </div>
@@ -992,7 +1003,7 @@ function thePastePage(loggedIn, dpLink) {
 
               <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-              <p id="aRedMessage" class="warningText">BY DEFAULT, WHEN ANONYMOUS, YOU WILL NOT BE ABLE TO EDIT OR DELETE YOUR PASTE</h5>
+              <p id="aRedMessage" class="warningText">BY DEFAULT, WHEN ANONYMOUS, YOU WILL NOT BE ABLE TO EDIT OR DELETE YOUR PASTE<br/>[Currently Unavailable!]</h5>
               <hr/>
               </div>
               </div>
@@ -1001,7 +1012,7 @@ function thePastePage(loggedIn, dpLink) {
         </div>
 
         <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
         <div id="newPasteDiv">
           <button class="btn btn-success btn-lg ctrlvButton newPasteButton" id="create_paste_submit" type="button">Create New Paste</button>
         </div>
@@ -1012,11 +1023,7 @@ function thePastePage(loggedIn, dpLink) {
 
         </div>
 
-      <div class="theFooter">
-        <ul>
-          <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
-        </ul>
-      </div>
+      ${TheFooter}
 
       <script src="/ui/pasteBrain.js"></script>
       ${loadMainScriptHtml}
@@ -1149,11 +1156,7 @@ function editProfilePage(userInfo) {
 
         </div>
 
-      <div class="theErrorFooter">
-        <ul>
-          <li><a class="footerOptions" href="">Created with &#10084; by Arunava</a><li>
-        </ul>
-        </div>
+      ${TheFooter}
       <script src="/ui/profileEdit.js"></script>
       <script type="text/javascript" src="/ui/js/jquery.js"></script>
       <script type="text/javascript" src="/ui/js/bootstrap.js"></script>

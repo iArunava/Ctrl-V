@@ -231,12 +231,6 @@ li a {
   left: -500px;
 }
 
-#ctrlvHits {
-  position: relative;
-  top: -45px;
-  left: 220px;
-}
-
 #newPasteDiv {
   padding: 20px;
   margin-top: 20px;
@@ -257,6 +251,10 @@ li a {
   margin: auto;
   padding: 22px 95px;
   background-color: #fff;
+}
+
+@media screen and (max-width: 991px) {
+  #ctrlvhitsbox {padding: 12px 15px;}
 }
 
 .getComfortable {
@@ -483,16 +481,6 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   right: 0px;
   margin-bottom: 0px;
   margin-top: 50px;
-}
-
-.fixPadd {
-  padding: 0px 25px;
-  width: 50px;
-}
-
-.small_profile_picture {
-  display: block;
-  border-radius: 60px;
 }
 
 #theNavigationBar {

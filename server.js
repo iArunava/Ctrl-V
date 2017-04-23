@@ -189,12 +189,29 @@ var TheFooter = `
 </div>
 `;
 
-var config = {
+var EditDelete = `
+<div class="row">
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+<button type="button" class="btn btn-default btn-circle btn-lg" id="saveEditBtn"><i class="glyphicon glyphicon-floppy-save"></i></button>
+<button type="button" class="btn btn-default btn-circle btn-lg" id="deletePasteBtn"><i class="glyphicon glyphicon-trash"></i></button>
+</div>
+</div>
+`;
+
+/*var config = {
     user: 'lqrjqvrbvvigaw',
     database: 'd5hsecam0tgn0c',
     host: 'ec2-54-243-185-132.compute-1.amazonaws.com',
     port: '5432',
     password: process.env.DATABASE_PASS
+};*/
+
+var config = {
+    user: 'postgres',
+    database: 'postgres',
+    host: '127.0.0.1',
+    port: '5432',
+    password: 'postgres'
 };
 
 var app = express();
@@ -297,7 +314,7 @@ app.get('/EditProfile', function(req, res){
                   res.status(500).send(errorTemplate("Unknown Error!", checkLogin(req, res), returnUserDpLink(req, res)));
               } else {
                   if(result.rows.length === 0){
-                      res.status(500).send(errorTemplate("Unknown Error!"), checkLogin(req, res), returnUserDpLink(req, res));
+                      res.status(500).send(errorTemplate("Unknown Error!", checkLogin(req, res), returnUserDpLink(req, res)));
                   } else {
                       res.send(editProfilePage(result.rows[0]));
                   }
@@ -317,7 +334,12 @@ app.get('/pastes/:pasteLink', function (req, res) {
               if (result.rows.length === 0) {
                   res.status(403).send(errorTemplate("Paste Link Invalid!", checkLogin(req, res), returnUserDpLink(req, res)));
               } else {
-                  res.end(createPasteTemplate(result.rows[0], checkLogin(req, res), returnUserDpLink(req, res)));
+                  if (checkLogin(req, res)) {
+                    loggedInUserId = req.session.auth.userId;
+                } else {
+                  loggedInUserId = null;
+                }
+                  res.end(createPasteTemplate(result.rows[0], checkLogin(req, res), returnUserDpLink(req, res), loggedInUserId));
               }
               }
 
@@ -417,12 +439,14 @@ app.post('/create-paste', function(req, res){
     var pasteAuthorLink = req.body.PasteAuthorLink;
     var pasteLink = crypto.randomBytes(8).toString('hex');
     var pasteUsername = null;
+    var pasteUsernameID = null;
     if(LoggedIn && !PasteAnon) {
         pasteUsername = req.session.auth.userName;
+        pasteUsernameID = req.session.auth.userId;
     }
 
-    pool.query('INSERT INTO "pastes" (paste_author, paste_title, paste_time, paste_link, paste_body, paste_username, paste_user_dp_link) VALUES ($1, $2, $3, $4, $5, $6, $7)',
-    [pasteAuthor, pasteTitle, pasteTime, pasteLink, pasteBody, pasteUsername, pasteAuthorLink], function(err, result) {
+    pool.query('INSERT INTO "pastes" (paste_author, paste_title, paste_time, paste_link, paste_body, paste_username, paste_user_dp_link, paste_username_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)',
+    [pasteAuthor, pasteTitle, pasteTime, pasteLink, pasteBody, pasteUsername, pasteAuthorLink, pasteUsernameID], function(err, result) {
 
         if(err){
             res.status(500).send(errorTemplate(err.toString(), checkLogin(req, res), returnUserDpLink(req, res)));
@@ -471,8 +495,71 @@ app.post('/edit-profile-save', function(req, res) {
     });
 });
 
-app.use(function(request, response){
-    response.end(errorTemplate("Page Not Found!"));
+app.post('/edit-paste', function(req, res) {
+
+  var pasteBody = req.body.PasteBody;
+  var pasteLink = req.body.PasteLink;
+
+  if (checkLogin(req, res)) {
+
+    pool.query('SELECT "paste_username_id" FROM "pastes" WHERE "paste_link" = $1', [pasteLink], function(err, result) {
+      if (err) {
+        res.status(500).send(errorTemplate("Paste Link Invalid!!", checkLogin(req, res), returnUserDpLink(req, res)));
+      } else {
+        if (result.rows[0].paste_username_id == req.session.auth.userId) {
+          pool.query('UPDATE "pastes" SET "paste_body" = $1 WHERE "paste_link" = $2', [pasteBody, pasteLink], function(err, result) {
+             if(err){
+                 res.status(500).send(errorTemplate("Something Went Wrong!\nPlease try Again!", checkLogin(req, res), returnUserDpLink(req, res)));
+             } else {
+                 res.send("Changes Saved!");
+             }
+          });
+        } else {
+          console.log("errorTemplate");
+          res.redirect(errorTemplate("You are not Authorized!", false, returnUserDpLink(req, res)));
+        }
+      }
+
+    });
+
+  } else {
+    res.end(errorTemplate("You are not Authorized!", false, returnUserDpLink(req, res)));
+  }
+});
+
+app.post('/delete-paste', function(req, res) {
+
+  var pasteLink = req.body.PasteLink;
+
+  if (checkLogin(req, res)) {
+
+    pool.query('SELECT "paste_username_id" FROM "pastes" WHERE "paste_link" = $1', [pasteLink], function(err, result) {
+      if (err) {
+        res.status(500).send(errorTemplate("Paste Link Invalid!!", checkLogin(req, res), returnUserDpLink(req, res)));
+      } else {
+        if (result.rows[0].paste_username_id == req.session.auth.userId) {
+          pool.query('DELETE FROM "pastes" WHERE "paste_link" = $1', [pasteLink], function(err, result) {
+             if(err){
+                 res.status(500).send(errorTemplate("Something Went Wrong!\nPlease try Again!", checkLogin(req, res), returnUserDpLink(req, res)));
+             } else {
+                 res.send("Changes Saved!");
+             }
+          });
+        } else {
+          console.log("errorTemplate");
+          res.redirect(errorTemplate("You are not Authorized!", false, returnUserDpLink(req, res)));
+        }
+      }
+
+    });
+
+  } else {
+    res.end(errorTemplate("You are not Authorized!", false, returnUserDpLink(req, res)));
+  }
+});
+
+app.use(function(req, res){
+    res.end(errorTemplate("Page Not Found!", checkLogin(req, res), returnUserDpLink(req, res)));
 });
 
 function errorTemplate(errorMessage, loggedIn, dpLink){
@@ -665,17 +752,23 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
     return browsePage;
 }
 
-function createPasteTemplate(pasteData, loggedIn, dpLink){
+function createPasteTemplate(pasteData, loggedIn, dpLink, loggedInUserId){
     var author = pasteData.paste_author;
     var time = pasteData.paste_time;
     var body = pasteData.paste_body;
     var link = pasteData.paste_link;
     var title = pasteData.paste_title;
+    var pasteUserID = pasteData.paste_username_id;
     var completeLink = "http://arunavadw.imad.hasura-app.io/pastes/"+link;
     var loggedInSign = "";
+    var editDelete = "";
 
     if(loggedIn){
         loggedInSign = smallProPic(dpLink);
+
+        if (loggedInUserId === pasteUserID) {
+          editDelete = EditDelete;
+        }
     }
 
     var pasteTemplate = `
@@ -708,8 +801,11 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
       <div class="container topPadd">
 
       <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
       <h2>${title}</h2>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      ${editDelete}
       </div>
       </div>
 
@@ -737,13 +833,14 @@ function createPasteTemplate(pasteData, loggedIn, dpLink){
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <p class="showAsFormatted">
       <div class="form-group">
-        <textarea class="form-control ctrlvTextArea pasteCreatorArea">${body}</textarea>
+        <textarea id="pasteShownArea" class="form-control ctrlvTextArea pasteCreatorArea">${body}</textarea>
       </div>
       </p>
       </div>
       </div>
 
       </div>
+      <script text="text/javascript" src="/ui/pasteEdit.js"></script>
       <script type="text/javascript" src="/ui/js/jquery.js"></script>
       <script type="text/javascript" src="/ui/js/bootstrap.js"></script>
     </body>
@@ -774,13 +871,13 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
         var title    = pastesData.rows[i].paste_title;
         var time     = pastesData.rows[i].paste_time;
         var username = pastesData.rows[i].paste_username;
-        var link     = "http://arunavadw.imad.hasura-app.io/pastes/"+pastesData.rows[i].paste_link;
+        var link     = "/pastes/"+pastesData.rows[i].paste_link;
 
         if(username === null || username === ''){
             username = `#`;
         }
 
-        usernameLink = "http://arunavadw.imad.hasura-app.io/users/"+username;
+        usernameLink = "/users/"+username;
 
         ctrlvRecents += `
         <div class="row">
@@ -894,7 +991,7 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div>
-          <h5 id="ctrlvHitsHeader">Ctrl+V Hits:</h5><span id="ctrlvHits">${ctrlvHits}<span>
+          <h5 id="ctrlvHitsHeader">Ctrl+V Hits:&nbsp;&nbsp;&nbsp;<span id="ctrlvHits">${ctrlvHits}<span></h5>
           </div>
           </div>
           </div>
@@ -915,7 +1012,7 @@ function createProfileTemplate(userData, pastesData, ctrlvHits) {
           </div>
           </div>
           </div>
-
+        <div class="paddBottom"></div>
         </div>
         </div>
         </div>
@@ -1003,7 +1100,8 @@ function thePastePage(loggedIn, dpLink) {
 
               <div class="row">
               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
-              <p id="aRedMessage" class="warningText">BY DEFAULT, WHEN ANONYMOUS, YOU WILL NOT BE ABLE TO EDIT OR DELETE YOUR PASTE<br/>[Currently Unavailable!]</h5>
+              <br/>
+              <p id="aRedMessage" class="warningText">BY DEFAULT, WHEN ANONYMOUS, YOU WILL NOT BE ABLE TO EDIT OR DELETE YOUR PASTE</h5>
               <hr/>
               </div>
               </div>
@@ -1048,7 +1146,7 @@ function editProfilePage(userInfo) {
     }
 
     if(proLink === '/ui/blank-profile-picture.png') {
-        proLinkValue = "";
+        proLinkValue = "Link&nbsp;to&nbsp;Your&nbsp;Profile&nbsp;Picture&nbsp;Here";
     }
 
     var editPage = `

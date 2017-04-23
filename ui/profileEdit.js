@@ -12,10 +12,17 @@ function loadTheImage(){
   }
 }
 
+theDpLink.onfocus = function() {
+  if (theDpLink.value = "Link to Your Profile Picture Here") {
+    theDpLink.value = "";
+  }
+
+}
+
 editSaveBtn.onclick = function() {
   loader[0].style.display = "inline-block";
   editSaveBtn.innerHTML = "Saving Changes...";
-  
+
   var request = new XMLHttpRequest();
 
   request.onreadystatechange = function() {
@@ -31,14 +38,14 @@ editSaveBtn.onclick = function() {
       }
     }
   };
-  
+
   var dpLink = theDpLink.value;
   var bio  = document.getElementById('theBioArea').value;
-  
+
   if(dpLink === ""){
-      dpLink = null;
+      dpLink = '/ui/blank-profile-picture.png';
   }
-  
+
   request.open('POST', '/edit-profile-save', true);
   request.setRequestHeader('Content-Type', 'application/json');
   request.send(JSON.stringify({DpLink: dpLink,

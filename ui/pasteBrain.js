@@ -2,7 +2,8 @@ var create_paste_btn = document.getElementById('create_paste_submit');
 var redMessage1 = document.getElementById('aRedMessage');
 var pasteAuthor = document.getElementById('paste_as');
 var pasteAuthorPic = document.getElementById('theSmallProfilePicture');
-
+var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug',
+                  'Sep', 'Oct', 'Nov', 'Dec'];
 function aRedMessageToggler() {
     if(pasteAuthor.value === 'Anonymous' || pasteAuthor.value === "") {
         redMessage1.style.display = 'block';
@@ -48,6 +49,7 @@ create_paste_btn.onclick = function() {
   }
 
   var pasteTime = new Date();
+  pasteTime = pasteTime.getDate() + " " + monthNames[pasteTime.getMonth()] + ", " + pasteTime.getFullYear();
 
   request.open('POST', '/create-paste', true);
   request.setRequestHeader('Content-Type', 'application/json');

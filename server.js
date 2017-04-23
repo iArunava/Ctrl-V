@@ -198,20 +198,12 @@ var EditDelete = `
 </div>
 `;
 
-/*var config = {
+var config = {
     user: 'lqrjqvrbvvigaw',
     database: 'd5hsecam0tgn0c',
     host: 'ec2-54-243-185-132.compute-1.amazonaws.com',
     port: '5432',
     password: process.env.DATABASE_PASS
-};*/
-
-var config = {
-    user: 'postgres',
-    database: 'postgres',
-    host: '127.0.0.1',
-    port: '5432',
-    password: 'postgres'
 };
 
 var app = express();

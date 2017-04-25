@@ -659,7 +659,7 @@ function createBrowsePage(pastesData, loggedIn, dpLink){
 
           <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <a class="dontDecorate" href="`+link+`">
+            <a class="dontDecorate paste_title_link" href="`+link+`">
               <h4>`+title+`</h4>
             </a>
           </div>

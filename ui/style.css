@@ -312,6 +312,14 @@ hr {
   background-color: #69c66d;
 }
 
+.varBtnWidth {
+  width: 50%;
+}
+
+@media screen and (max-width: 991px) {
+  .varBtnWidth {width: 100%}
+}
+
 .newPasteButton {
 
   width: 100%;
@@ -412,6 +420,16 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   }
 }
 
+.paste_title_link {
+  color: gray;
+  transition: color 0.2s;
+}
+
+.paste_title_link:hover, .paste_title_link:focus {
+  color: #ce93f2;
+  text-decoration: none;
+  font-weight: 100;
+}
 
 .thisIsInline {
   display: inline;
@@ -495,6 +513,10 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 
 .topPadd {
   padding-top: 80px;
+}
+
+.topPaddMain {
+  padding-top: 50px;
 }
 
 .dropdown {

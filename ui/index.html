@@ -129,7 +129,27 @@
 
   <!---MODALS END------------------------------------------------------------->
 
-  <div class="container">
+  <div id="theNavigationBar" class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar-content">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Ctrl+V</a>
+      </div>
+      <div class="collapse navbar-collapse" id="mynavbar-content">
+        <ul class="nav navbar-nav">
+        <li><a class="text-center" href="/">Main</a></li>
+        <li><a href="/NewPaste">New Paste</a></li>
+        <li><a href="/browse">Browse</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="container topPaddMain">
   <div>
 
     <div class="row the_title" >
@@ -153,7 +173,7 @@
 
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="btn btn-primary btn-lg ctrlvButton" data-toggle="modal" data-target="#create_account_form" type="button">Create New Account</button>
+            <button class="btn btn-primary btn-lg ctrlvButton varBtnWidth" data-toggle="modal" data-target="#create_account_form" type="button">Create New Account</button>
             <br/>
             <hr/>
           </div>
@@ -161,7 +181,7 @@
 
         <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <a class="newPasteLink" href="/NewPaste"><button class="btn btn-primary btn-lg ctrlvButton" id="create_paste_submit" type="button">Create New Paste</button></a>
+          <a class="newPasteLink" href="/NewPaste"><button class="btn btn-primary btn-lg ctrlvButton varBtnWidth" id="create_paste_submit" type="button">Create New Paste</button></a>
           <br/>
           <hr/>
         </div>
@@ -169,7 +189,7 @@
 
         <div class="row">
           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="btn btn-primary btn-lg ctrlvButton" data-toggle="modal" data-target="#login_form" type="button">Login</button>
+            <button class="btn btn-primary btn-lg ctrlvButton varBtnWidth" data-toggle="modal" data-target="#login_form" type="button">Login</button>
           </div>
         </div>
 

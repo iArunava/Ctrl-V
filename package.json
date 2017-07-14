@@ -9,10 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LearningDroidArunava/Ctrl-V.git"
+    "url": "git+https://github.com/iArunava/Ctrl-V.git"
   },
   "engines": {
-  "node": "6.x.x",
+  "node": "^8.1.4",
   "npm": "3.x.x"
   },
   "keywords": [],

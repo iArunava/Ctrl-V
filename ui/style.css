@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Syncopate');
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans");
 
 .center_wrap {
   padding-top: 100px;
@@ -9,15 +9,21 @@ a:hover {
 }
 
 @media screen and (max-width: 767px) {
-
-  * {font-size: 10px !important;}
-  .the_name {font-size: 12px !important}
+  * {
+    font-size: 10px !important;
+  }
+  .the_name {
+    font-size: 12px !important;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-
-  * {font-size: 12px !important;}
-  .the_name {font-size: 14px !important}
+  * {
+    font-size: 12px !important;
+  }
+  .the_name {
+    font-size: 14px !important;
+  }
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
@@ -28,15 +34,12 @@ a:hover {
 
 .the_name {
   text-align: center;
-  font-size: 50px !important;
-  color: #97a899;
+  font-size: 40px !important;
   font-weight: bold;
-  text-shadow: 1px 1px 12px #888;
 }
 
 .the_body {
-  background: #e1bee7;
-  font-family: 'Syncopate', 'Helvetica';
+  font-family: "Josefin Sans", "Helvetica";
   padding: 0;
   margin: 0;
 }
@@ -50,9 +53,9 @@ a:hover {
   margin-bottom: 5%;
 }
 
-.showAsFormatted{
-    word-wrap: break-word;
-    white-space: pre-line;
+.showAsFormatted {
+  word-wrap: break-word;
+  white-space: pre-line;
 }
 
 .the_box {
@@ -67,17 +70,15 @@ a:hover {
 }
 
 @media only screen and (max-width: 332px) {
-
   .the_box {
-
     padding: 20px 10px;
   }
 }
 
 .the_login_box {
   border: 2px solid #f1f1f1;
-  box-shadow: 10px 8px 15px rgba(0,0,0,0.14),
-            -04px -17px -50px -10px rgba(0,0,0,0.19);
+  box-shadow: 10px 8px 15px rgba(0, 0, 0, 0.14),
+    -04px -17px -50px -10px rgba(0, 0, 0, 0.19);
   margin-top: 8%;
 }
 
@@ -93,7 +94,7 @@ li {
 }
 
 .goRight {
-    float: right;
+  float: right;
 }
 
 .justMargin {
@@ -115,7 +116,6 @@ li {
 }
 
 .pasteLayoutPart {
-
 }
 
 .navBarOption_site_name {
@@ -150,13 +150,12 @@ li a {
 }
 
 .ctrlvTextArea:focus {
-
   border-color: #d093f9;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(208, 147, 249, 0.6);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 8px rgba(208, 147, 249, 0.6);
 }
 
 .pasteCreatorArea {
-
   height: 50vh !important;
 }
 
@@ -181,7 +180,6 @@ li a {
 }
 
 @media only screen and (max-width: 996px) {
-
   .the_footer_login_box {
     width: 100%;
   }
@@ -195,9 +193,9 @@ li a {
   margin-top: 30px;
 }
 
-.toLeft{
-    float: left;
-    display: inline-block;
+.toLeft {
+  float: left;
+  display: inline-block;
 }
 
 .profile_picture {
@@ -227,7 +225,7 @@ li a {
 
 #identifier_next {
   position: relative;
-  top:   350px;
+  top: 350px;
   left: -500px;
 }
 
@@ -236,7 +234,7 @@ li a {
   margin-top: 20px;
   margin-bottom: 20px;
   margin-right: 20px;
-  width: 100%
+  width: 100%;
 }
 
 .newPstInputs {
@@ -254,7 +252,9 @@ li a {
 }
 
 @media screen and (max-width: 991px) {
-  #ctrlvhitsbox {padding: 12px 15px;}
+  #ctrlvhitsbox {
+    padding: 12px 15px;
+  }
 }
 
 .getComfortable {
@@ -264,13 +264,13 @@ li a {
 }
 
 .modal_content {
-    background-color: #fefefe;
-    margin: 5px auto; /* 15% from the top and centered */
-    border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
+  background-color: #fefefe;
+  margin: 5px auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 60%; /* Could be more or less, depending on screen size */
 }
 
-.modal_form{
+.modal_form {
   position: fixed;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);
@@ -285,7 +285,7 @@ hr {
 }
 
 .ctrlvButton {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   color: white !important;
   padding: 15px 32px;
@@ -295,7 +295,7 @@ hr {
   font-size: 16px;
   margin: 4px 2px;
   -webkit-transition: box-shadow 0.5s, background-color 0.5s;
-  transition: box-shadow 0.5s, background-color 0.50s;
+  transition: box-shadow 0.5s, background-color 0.5s;
 }
 
 @media screen and (max-width: 367px) {
@@ -303,9 +303,9 @@ hr {
     padding: 10px 12px;
   }
 }
-.ctrlvButton:hover{
+.ctrlvButton:hover {
   background-color: #69c66d;
-  box-shadow: 0 5px 6px 0 rgba(0,0,0,0.12), 0 2px 3px 0 rgba(0,0,0,0.11);
+  box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.11);
 }
 
 .ctrlvButton:focus {
@@ -317,16 +317,17 @@ hr {
 }
 
 @media screen and (max-width: 991px) {
-  .varBtnWidth {width: 100%}
+  .varBtnWidth {
+    width: 100%;
+  }
 }
 
 .newPasteButton {
-
   width: 100%;
 }
 
 #addCopyImage > button {
-  background-color: #4CAF20;
+  background-color: #4caf20;
   -webkit-transition: box-shadow 0.75s, background-color 0.75s;
   transition: box-shadow 0.75s, background-color 0.75s;
   width: 80px;
@@ -344,7 +345,9 @@ hr {
   font-size: 14px;
 }
 
-input[type=text], input[type=password], input[type=email]{
+input[type="text"],
+input[type="password"],
+input[type="email"] {
   padding: 10px 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
@@ -355,25 +358,60 @@ input[type=text], input[type=password], input[type=email]{
   transition: box-shadow 0.75s;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
-
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
   border: 1px solid #ccc;
   border-radius: 5px;
   border-color: #d093f9;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(208, 147, 249, 0.6);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset,
+    0 0 8px rgba(208, 147, 249, 0.6);
 }
 
+#the_ctrl_v_icon {
+  background-color: #018ef5;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  padding-top: 5px;
+  text-decoration: none;
+  overflow: none;
+  display: inline-block;
+  transition: background-color 0.2s;
+}
 
-.the_ctrl_v_icon {
+#the_ctrl_v_icon:hover,
+#the_ctrl_v_icon:hover > div {
+  background-color: #2196f3;
+}
+
+#the_ctrl_v_icon > div {
   display: block;
-  border-radius: 60px;
-  box-shadow: 5px 5px 12px #888;
-  padding: 20px;
+  border-radius: 50%;
+  border: 5px solid white;
+  width: 150px;
+  height: 150px;
+  padding: 50px;
   margin: auto;
   box-sizing: content-box;
+  background: #018ef5;
+  transition: background-color 0.2s;
 }
 
-.create_account_box{
+#the_ctrl_v_icon img {
+  display: block;
+  margin: auto;
+  margin-top: -20px;
+  width: 130px;
+  height: 130px;
+}
+
+#the_ctrl_v_icon {
+  text-align: center;
+  color: white;
+}
+
+.create_account_box {
   padding: 16px;
   margin: auto;
 }
@@ -403,20 +441,28 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   transition: color 0.5s;
 }
 
-.theCloseButton:hover, .theCloseButton:focus{
+.theCloseButton:hover,
+.theCloseButton:focus {
   color: red;
 }
 
-.animate{
+.animate {
+  @keyframes animatezoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
 
-@keyframes animatezoom {
-  from {transform: scale(0)}
-  to {transform: scale(1)}
-}
-
-@-webkit-keyframes animatezoom{
-  from {transform: scale(0)}
-  to {transform: scale(1)}
+  @-webkit-keyframes animatezoom {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1);
+    }
   }
 }
 
@@ -425,7 +471,8 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   transition: color 0.2s;
 }
 
-.paste_title_link:hover, .paste_title_link:focus {
+.paste_title_link:hover,
+.paste_title_link:focus {
   color: #ce93f2;
   text-decoration: none;
   font-weight: 100;
@@ -453,13 +500,21 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .dontDecorate {
@@ -502,13 +557,25 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 
 #theNavigationBar {
-    position: fixed;
-    z-index: 1000;
-    width: 100%;
-    -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
-    -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
-     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
-     opacity: 0.93;
+  position: fixed;
+  z-index: 1000;
+  background: #018ef5;
+  width: 100%;
+  -webkit-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+  opacity: 0.93;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  color: white !important;
+  font-weight: bold;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white !important;
+  font-size: 20px;
 }
 
 .topPadd {
@@ -520,54 +587,84 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
 }
 
 .dropdown {
-    float: left;
-    overflow: hidden;
+  float: left;
+  overflow: hidden;
 }
 
 .dropdown .dropbtn {
-    font-size: 16px;
-    border: none;
-    outline: none;
-    color: white;
-    padding: 14px 16px;
-    background-color: inherit;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
 }
 
-.container a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
+.container a:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .dropdown-content a {
-    float: none;
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd;
+  background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
 
 .makeTheBackWhite {
-
   background-color: white;
 }
 
 .paddBottom {
   margin-bottom: 50px;
+}
+
+.sleek_button {
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+  width: 200px;
+  border-radius: 30px;
+  font-size: 20px;
+  display: inline-block;
+  margin: 5px;
+}
+
+.dark_button {
+  background-color: #018ef5;
+  color: white;
+  border: none !important;
+}
+
+.light_button {
+  background-color: white;
+  border: 2px solid #018ef5;
+  color: #018ef5;
+}
+
+.brand_icon {
+  display: inline-block !important;
+  margin-bottom: 5px;
+  width: 25px;
+  height: 25px;
 }

@@ -137,11 +137,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">Ctrl+V</a>
+        <a class="navbar-brand" href="/">
+          <img src="/ui/ctrlv_icon_white.png" alt="ctrlVICon" class="brand_icon"/> Ctrl+V</a>
       </div>
       <div class="collapse navbar-collapse" id="mynavbar-content">
         <ul class="nav navbar-nav">
-        <li><a class="text-center" href="/">Main</a></li>
+        <li><a class="text-center" href="/">Home</a></li>
         <li><a href="/NewPaste">New Paste</a></li>
         <li><a href="/browse">Browse</a></li>
         </ul>
@@ -152,53 +153,47 @@
   <div class="container topPaddMain">
   <div>
 
-    <div class="row the_title" >
+    <div class="row the_title">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <img src="/ui/ctrlVIcon.png" alt="ctrlVICon"
-        width="130" height="130" class="the_ctrl_v_icon" />
+        <h1 class="the_name title_page_name">CTRL+V</h1>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <h1 class="the_name title_page_name">Ctrl+V</h1>
+    <div class="row" >
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="text-align: center">
+        <a class="newPasteLink" href="/NewPaste">
+          <div id="the_ctrl_v_icon">
+              <div>
+                <img src="/ui/ctrlv_icon_white.png" />
+                <h3>New Paste!</h3>
+              </div>
+          </div>
+        </a>
       </div>
     </div>
+
 
     <br/></br/>
 
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="the_box">
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="btn btn-primary btn-lg ctrlvButton varBtnWidth" data-toggle="modal" data-target="#create_account_form" type="button">Create New Account</button>
-            <br/>
-            <hr/>
-          </div>
-        </div>
-
-        <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <a class="newPasteLink" href="/NewPaste"><button class="btn btn-primary btn-lg ctrlvButton varBtnWidth" id="create_paste_submit" type="button">Create New Paste</button></a>
-          <br/>
-          <hr/>
-        </div>
-      </div>
-
-        <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button class="btn btn-primary btn-lg ctrlvButton varBtnWidth" data-toggle="modal" data-target="#login_form" type="button">Login</button>
-          </div>
+        <h3 style='text-align:center;'>
+            Have something to paste? Paste it here.<br>
+            Paste anything and it stays here!
+        </h3>
+        <br>
+        <div style="text-align:center">
+            <button class='sleek_button dark_button' data-toggle="modal" data-target="#login_form" >
+              Login
+            </button>
+    
+            <button class='sleek_button light_button' data-toggle="modal" data-target="#create_account_form" >
+              New Account
+            </button>
         </div>
 
       </div>
-
-      <div class="paddBottom"></div>
-
     </div>
-  </div>
   </div>
 </div>
 </div>
